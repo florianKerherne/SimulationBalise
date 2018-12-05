@@ -1,5 +1,5 @@
 package model;
 
-public class Deplacement {
+public interface Deplacement {
 
 }
