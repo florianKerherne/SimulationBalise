@@ -1,5 +1,11 @@
 package model;
 
-public class Balise {
+public class Balise extends Entite {
+	
+	public Balise() {
+		
+	}
+	
+	
 
 }

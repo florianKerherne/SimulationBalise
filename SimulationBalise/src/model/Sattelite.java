@@ -1,5 +1,5 @@
 package model;
 
-public class Sattelite {
+public class Sattelite extends Entite{
 
 }
