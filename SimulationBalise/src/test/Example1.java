@@ -4,7 +4,9 @@ package test;
 import java.awt.Color;
 import java.awt.Dimension;
 import model.Balise;
+import model.Entite;
 import model.Model;
+import model.Position;
 import model.Sattelite;
 import vue.World;
 
@@ -13,10 +15,22 @@ public class Example1 {
 
 	public static void main(String[] args) {
 		Model model = new Model();
-		model.addListEntites(new Sattelite());
-		model.addListEntites(new Balise());
-		model.addListEntites(new Balise());
+		model.addListEntites(createSattelite(50,50));
+		model.addListEntites(createBalise(50,10));
+		model.addListEntites(createBalise(20,20));
 		lance(model);
+	}
+	
+	private static Entite createSattelite(int x,int y) {
+		Sattelite satelite = new Sattelite();
+		satelite.setPosition(new Position(x,y));
+		return satelite;
+	}
+	
+	private static Entite createBalise(int x,int y) {
+		Balise satelite = new Balise();
+		satelite.setPosition(new Position(x,y));
+		return satelite;
 	}
 	
 	private static void lance(Model model) {
