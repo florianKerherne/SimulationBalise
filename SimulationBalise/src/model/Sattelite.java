@@ -17,7 +17,7 @@ public class Sattelite extends Entite {
 
 	@Override
 	public void nextTurn() {
-		
+		setPosition(new Position(getPosition().getX()+1,getPosition().getY()));
 	}
 
 }

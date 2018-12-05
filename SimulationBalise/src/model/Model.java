@@ -38,6 +38,15 @@ public class Model {
 		return balise;
 	}
 	
+	public Entite createBalise(int x,int y,Deplacement dep) {
+		Balise balise = new Balise();
+		balise.setDeplacement(dep);
+		sendObserver(balise);
+		balise.setPosition(new Position(x,y));
+		listEntites.add(balise);
+		return balise;
+	}
+	
 	private void sendObservable(Observable o) {
 		for(Entite entite:listEntites) {
 			entite.sendObserver(o);
@@ -51,7 +60,9 @@ public class Model {
 	}
 	
 	public void nextTurn() {
-		
+		for(Entite entite:listEntites) {
+			entite.nextTurn();
+		}
 	}
 	
 	
