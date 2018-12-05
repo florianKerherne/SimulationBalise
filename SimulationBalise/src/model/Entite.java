@@ -5,7 +5,16 @@ import java.util.Observable;
 public class Entite extends Observable{
 	
 	private Deplacement deplacement;
+	private Position position;
 	
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
 	public Entite() {
 	}
 
