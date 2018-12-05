@@ -6,7 +6,6 @@ import java.util.Observer;
 public class Balise extends Entite implements Observer {
 	
 	public Balise() {
-		
 	}
 
 	@Override

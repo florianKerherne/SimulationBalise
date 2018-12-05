@@ -2,16 +2,17 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 public class Model {
 
-	private List<Entite> listEntites;
+	private List<Observable> listEntites;
 	
 	public Model() {
-		this.listEntites = new ArrayList<Entite>();
+		this.listEntites = new ArrayList<Observable>();
 	}
 
-	public List<Entite> getListEntites() {
+	public List<Observable> getListEntites() {
 		return listEntites;
 	}
 
