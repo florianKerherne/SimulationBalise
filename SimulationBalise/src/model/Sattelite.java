@@ -1,5 +1,5 @@
 package model;
 
-public class Sattelite extends Entite{
+public class Sattelite extends Entite implements Observable{
 
 }
