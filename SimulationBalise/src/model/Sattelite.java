@@ -15,4 +15,9 @@ public class Sattelite extends Entite {
 		this.addObserver(o);
 	}
 
+	@Override
+	public void nextTurn() {
+		
+	}
+
 }

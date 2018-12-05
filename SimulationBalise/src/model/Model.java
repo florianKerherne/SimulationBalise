@@ -50,5 +50,9 @@ public class Model {
 		}
 	}
 	
+	public void nextTurn() {
+		
+	}
+	
 	
 }

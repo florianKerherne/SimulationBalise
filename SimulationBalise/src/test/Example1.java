@@ -21,18 +21,6 @@ public class Example1 {
 		lance(model);
 	}
 	
-	/*private static Entite createSattelite(int x,int y) {
-		Sattelite satelite = new Sattelite();
-		satelite.setPosition(new Position(x,y));
-		return satelite;
-	}
-	
-	private static Entite createBalise(int x,int y) {
-		Balise satelite = new Balise();
-		satelite.setPosition(new Position(x,y));
-		return satelite;
-	}*/
-	
 	private static void lance(Model model) {
 		World jc = new World("Un essai de Morphs");
 		jc.setBackground(Color.WHITE);
