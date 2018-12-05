@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,7 +22,7 @@ import model.Balise;
 import model.Model;
 import model.Sattelite;
 
-public class World extends JPanel implements KeyListener {
+public class World extends JPanel implements KeyListener,Observer {
 	private static final long serialVersionUID = 1L;
 
 	Model model;
@@ -107,6 +108,11 @@ public class World extends JPanel implements KeyListener {
 			keyListener.keyReleased(e);
 		}
 
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		repaint();
 	}
 
 }

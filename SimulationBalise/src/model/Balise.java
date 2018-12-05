@@ -13,4 +13,14 @@ public class Balise extends Entite implements Observer {
 		
 	}
 
+	@Override
+	public void sendObserver(Observable o) {
+		o.addObserver(this);
+	}
+
+	@Override
+	public void sendObservable(Observer o) {
+		
+	}
+
 }
