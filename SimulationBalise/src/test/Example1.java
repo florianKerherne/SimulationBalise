@@ -28,11 +28,10 @@ public class Example1 {
 		jc.open();
 		while (true) {
 			jc.repaint();
-			//action
+			//------- action
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
