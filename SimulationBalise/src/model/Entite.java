@@ -32,7 +32,7 @@ public abstract class Entite extends Observable{
 	public Position executeDeplacement(Position position, Deplacement deplacement){
 		 this.deplacement = deplacement;
 	     return deplacement.Move(position);
-	   }
+	}
 	
 	public abstract void sendObserver(Observable o);
 	
