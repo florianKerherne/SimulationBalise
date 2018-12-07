@@ -5,6 +5,11 @@ import java.util.Observer;
 
 public class Sattelite extends Entite {
 
+	public Sattelite(Position position) {
+		setDeplacement(new DeplacementSattelite());
+		setPosition(position);
+	}
+
 	@Override
 	public void sendObserver(Observable o) {
 		

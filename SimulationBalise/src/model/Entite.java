@@ -8,6 +8,7 @@ public abstract class Entite extends Observable{
 	private Deplacement deplacement;
 	private Position position;
 	
+	
 	public Position getPosition() {
 		return position;
 	}
@@ -18,8 +19,7 @@ public abstract class Entite extends Observable{
 		notifyObservers();
 	}
 
-	public Entite() {
-	}
+	
 
 	public Deplacement getDeplacement() {
 		return deplacement;
@@ -29,9 +29,14 @@ public abstract class Entite extends Observable{
 		this.deplacement = deplacement;
 	}
 	
-	public Position executeDeplacement(Position position, Deplacement deplacement){
-		 this.deplacement = deplacement;
-	     return deplacement.Move(position);
+	public Position executeDeplacement(){
+		Position result = null;
+		if(deplacement!=null && position!=null) {
+			deplacement.Move(position);
+			setChanged();
+			notifyObservers();
+		}
+	     return result;
 	}
 	
 	public abstract void sendObserver(Observable o);

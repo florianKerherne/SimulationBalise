@@ -4,8 +4,14 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Balise extends Entite implements Observer {
+
+	public Balise(Deplacement deplacement,Position position) {
+		setDeplacement(deplacement);
+		setPosition(position);
+	}
 	
-	public Balise() {
+	public Balise(Deplacement deplacement) {
+		this(deplacement,new Position(0,0));
 	}
 
 	@Override
@@ -25,7 +31,7 @@ public class Balise extends Entite implements Observer {
 
 	@Override
 	public void updateSimulation() {
-		executeDeplacement(getPosition(), getDeplacement());
+		executeDeplacement();
 	}
 
 }

@@ -3,14 +3,11 @@ package test;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import model.Balise;
 import model.DeplacementHorizontal;
 import model.DeplacementParabol;
 import model.DeplacementVertical;
 import model.Entite;
 import model.Model;
-import model.Position;
-import model.Sattelite;
 import vue.World;
 
 
@@ -18,9 +15,9 @@ public class Example1 {
 
 	public static void main(String[] args) {
 		Model model = new Model();
-		model.createBalise(50,-50,new DeplacementVertical());
-		model.createBalise(50,-50,new DeplacementHorizontal());
-		model.createBalise(50,-50,new DeplacementParabol());
+		model.createBalise(150,0,new DeplacementVertical());
+		model.createBalise(50,0,new DeplacementHorizontal());
+		model.createBalise(00,0,new DeplacementParabol());
 		model.createSattelite(50,10);
 		model.createSattelite(20,20);
 		lance(model);

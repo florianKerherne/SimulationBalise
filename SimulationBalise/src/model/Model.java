@@ -22,27 +22,26 @@ public class Model {
 	}
 	
 	public Entite createSattelite(int x,int y) {
-		Sattelite satelite = new Sattelite();
+		Sattelite satelite = new Sattelite(new Position(x,y));
 		//satelite.addObserver(o);
 		sendObservable(satelite);
-		satelite.setPosition(new Position(x,y));
 		listEntites.add(satelite);
 		return satelite;
 	}
 	
-	public Entite createBalise(int x,int y) {
+	/*public Entite createBalise(int x,int y) {
 		Balise balise = new Balise();
 		sendObserver(balise);
 		balise.setPosition(new Position(x,y));
 		listEntites.add(balise);
 		return balise;
-	}
+	}*/
 	
 	public Entite createBalise(int x,int y,Deplacement dep) {
-		Balise balise = new Balise();
-		balise.setDeplacement(dep);
+		Balise balise = new Balise(dep,new Position(x,y));
+		//balise.setDeplacement(dep);
 		sendObserver(balise);
-		balise.setPosition(new Position(x,y));
+		//balise.setPosition(new Position(x,y));
 		listEntites.add(balise);
 		return balise;
 	}
