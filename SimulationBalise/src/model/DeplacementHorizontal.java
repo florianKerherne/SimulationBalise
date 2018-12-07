@@ -1,17 +1,24 @@
 package model;
 
+import ressources.GetPropertyValues;
+
 public class DeplacementHorizontal implements Deplacement{
 
 	static final int descenteMax = 235;
 	static final int pas = 3;
-	static final int niveauMer = 0;
 	static final int distanceAvancer = 300;
-	static final int BordDroit = 1000;
+	final int niveauMer;
+	final int BordDroit;
 	
 	int etat = 1;
 	//etat 1 = descendre;
 	//etat 2 = avancer;
 	//etat 3 = monter;
+	
+	public DeplacementHorizontal() {
+		BordDroit = GetPropertyValues.getValuePropertie("BordDroit");
+		niveauMer = GetPropertyValues.getValuePropertie("niveauMer");
+	}
 	
 	@Override
 	public Position Move(Position p) {

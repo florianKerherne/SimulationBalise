@@ -8,6 +8,7 @@ import model.DeplacementParabol;
 import model.DeplacementVertical;
 import model.Entite;
 import model.Model;
+import ressources.GetPropertyValues;
 import vue.World;
 
 
@@ -29,7 +30,7 @@ public class Example1 {
 			entite.addObserver(jc);
 		}
 		jc.setBackground(Color.WHITE);
-		jc.setPreferredSize(new Dimension(1000, 600));
+		jc.setPreferredSize(new Dimension(GetPropertyValues.getValuePropertie("BordDroit"), 600));
 
 		jc.setModel(model);
 		jc.open();

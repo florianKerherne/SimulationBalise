@@ -1,13 +1,20 @@
 package model;
 
+import ressources.GetPropertyValues;
+
 public class DeplacementParabol implements Deplacement{
 
 	static final int descenteMax = 200;
 	static final int pas = 3;
-	static final int niveauMer = 0;
-	static final int BordDroit = 1000;
+	final int niveauMer;
+	final int BordDroit;
 	
 	Boolean descente = true;
+	
+	public DeplacementParabol() {
+		BordDroit = GetPropertyValues.getValuePropertie("BordDroit");
+		niveauMer = GetPropertyValues.getValuePropertie("niveauMer");
+	}
 	
 	@Override
 	public Position Move(Position position) {

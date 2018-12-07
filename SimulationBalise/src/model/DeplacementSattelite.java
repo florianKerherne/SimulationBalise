@@ -1,9 +1,15 @@
 package model;
 
+import ressources.GetPropertyValues;
+
 public class DeplacementSattelite implements Deplacement{
 
 	static final int pas = 3;
-	static final int BordDroit = 1000;
+	final int BordDroit;
+	
+	public DeplacementSattelite() {
+		BordDroit = GetPropertyValues.getValuePropertie("BordDroit");
+	}
 	
 	@Override
 	public Position Move(Position position) {

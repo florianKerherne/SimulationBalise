@@ -1,12 +1,18 @@
 package model;
 
+import ressources.GetPropertyValues;
+
 public class DeplacementVertical implements Deplacement {
 	
 	static final int descenteMax = 250;
 	static final int pas = 3;
-	static final int niveauMer = 0;
+	final int niveauMer;
 	
 	Boolean descente = true;
+	
+	public DeplacementVertical() {
+		niveauMer = GetPropertyValues.getValuePropertie("niveauMer");
+	}
 	
 	@Override
 	public Position Move(Position p) {

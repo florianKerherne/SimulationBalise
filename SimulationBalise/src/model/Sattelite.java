@@ -3,14 +3,18 @@ package model;
 import java.util.Observable;
 import java.util.Observer;
 
+import ressources.GetPropertyValues;
+
 public class Sattelite extends Entite {
 
 	static final int largeurZone = 10;
-	static final int BordDroit = 1000;
+	final int BordDroit ;
 	
 	public Sattelite(Position position) {
 		setDeplacement(new DeplacementSattelite());
 		setPosition(position);
+		BordDroit = GetPropertyValues.getValuePropertie("BordDroit");
+		//System.out.println(BordDroit);
 	}
 
 	@Override
