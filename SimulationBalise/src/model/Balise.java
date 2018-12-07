@@ -5,6 +5,7 @@ import java.util.Observer;
 
 public class Balise extends Entite implements Observer {
 
+	boolean MessageTransmis = false;
 	public Balise(Deplacement deplacement,Position position) {
 		setDeplacement(deplacement);
 		setPosition(position);
@@ -16,7 +17,13 @@ public class Balise extends Entite implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		
+		if(getPosition().getY()>=0 && MessageTransmis==false) {
+			Sattelite sattelite = (Sattelite)arg0;
+			if(sattelite.dansZoneReception(getPosition())) {
+				sattelite.transmitionMessage("coucou");
+				MessageTransmis=true;
+			}
+		}
 	}
 
 	@Override
@@ -31,7 +38,15 @@ public class Balise extends Entite implements Observer {
 
 	@Override
 	public void updateSimulation() {
-		executeDeplacement();
+		if(getPosition().getY()<0) {
+			executeDeplacement();
+		} else {
+			if(MessageTransmis) {
+				executeDeplacement();
+				MessageTransmis=false;				
+			}
+			
+		}
 	}
 
 }
