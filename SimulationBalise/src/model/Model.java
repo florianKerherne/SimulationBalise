@@ -59,9 +59,9 @@ public class Model {
 		}
 	}
 	
-	public void update() {
+	public void updateSimulation() {
 		for(Entite entite:listEntites) {
-			entite.update();
+			entite.updateSimulation();
 		}
 	}
 	

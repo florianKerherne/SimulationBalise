@@ -4,6 +4,8 @@ package test;
 import java.awt.Color;
 import java.awt.Dimension;
 import model.Balise;
+import model.DeplacementHorizontal;
+import model.DeplacementParabol;
 import model.DeplacementVertical;
 import model.Entite;
 import model.Model;
@@ -16,7 +18,9 @@ public class Example1 {
 
 	public static void main(String[] args) {
 		Model model = new Model();
-		model.createBalise(50,50,new DeplacementVertical());
+		model.createBalise(50,-50,new DeplacementVertical());
+		model.createBalise(50,-50,new DeplacementHorizontal());
+		model.createBalise(50,-50,new DeplacementParabol());
 		model.createSattelite(50,10);
 		model.createSattelite(20,20);
 		lance(model);
@@ -35,7 +39,7 @@ public class Example1 {
 		while (true) {
 			//jc.repaint();
 			//------- action
-			model.update();
+			model.updateSimulation();
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {

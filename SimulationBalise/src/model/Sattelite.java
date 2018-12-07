@@ -16,7 +16,7 @@ public class Sattelite extends Entite {
 	}
 
 	@Override
-	public void update() {
+	public void updateSimulation() {
 		setPosition(new Position(getPosition().getX()+1,getPosition().getY()));
 	}
 
