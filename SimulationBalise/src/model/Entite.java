@@ -38,5 +38,5 @@ public abstract class Entite extends Observable{
 	
 	public abstract void sendObservable(Observer o);
 
-	public abstract void nextTurn();
+	public abstract void update();
 }

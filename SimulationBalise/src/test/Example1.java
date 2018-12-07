@@ -35,7 +35,7 @@ public class Example1 {
 		while (true) {
 			//jc.repaint();
 			//------- action
-			model.nextTurn();
+			model.update();
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {

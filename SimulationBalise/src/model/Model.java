@@ -59,9 +59,9 @@ public class Model {
 		}
 	}
 	
-	public void nextTurn() {
+	public void update() {
 		for(Entite entite:listEntites) {
-			entite.nextTurn();
+			entite.update();
 		}
 	}
 	
