@@ -13,7 +13,6 @@ public class DeplacementParabol implements Deplacement{
 		float positionY = Math.abs(position.getY());
 		float deplacementX = positionY/descenteMax + 1;
 		deplacementX = deplacementX * pas;
-		System.out.println(descente);
 		if(descente) {
 			descendre(position);
 		}else {
