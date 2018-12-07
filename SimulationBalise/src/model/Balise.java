@@ -5,7 +5,7 @@ import java.util.Observer;
 
 public class Balise extends Entite implements Observer {
 
-	boolean MessageTransmis = false;
+	boolean MessageTransmis = true;
 	public Balise(Deplacement deplacement,Position position) {
 		setDeplacement(deplacement);
 		setPosition(position);

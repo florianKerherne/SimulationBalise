@@ -19,7 +19,7 @@ public class Example1 {
 		model.createBalise(50,0,new DeplacementHorizontal());
 		model.createBalise(00,0,new DeplacementParabol());
 		model.createSattelite(50,50);
-		model.createSattelite(20,50);
+		model.createSattelite(200,50);
 		lance(model);
 	}
 	
