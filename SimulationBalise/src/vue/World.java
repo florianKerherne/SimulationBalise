@@ -54,7 +54,9 @@ public class World extends JPanel implements KeyListener,Observer {
 	}
 
 	public void paint(Graphics g) {
+		
 		super.paint(g);
+		drawDecors(g);
 		for(Observable entity: model.getListEntites()) {
 			draw(g,entity);
 		}
@@ -65,6 +67,9 @@ public class World extends JPanel implements KeyListener,Observer {
 		if(entity instanceof Balise)draw(g,(Balise)entity);
 	}
 
+	public void drawDecors(Graphics g) {
+		g.fillRect(0, 100, 1000, 1);
+	}
 	public void draw(Graphics g,Sattelite sattelite) {
 		Color c = g.getColor();
 		g.setColor(Color.RED);
