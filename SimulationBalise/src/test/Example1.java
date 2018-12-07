@@ -29,7 +29,7 @@ public class Example1 {
 			entite.addObserver(jc);
 		}
 		jc.setBackground(Color.WHITE);
-		jc.setPreferredSize(new Dimension(800, 600));
+		jc.setPreferredSize(new Dimension(1000, 600));
 
 		jc.setModel(model);
 		jc.open();
