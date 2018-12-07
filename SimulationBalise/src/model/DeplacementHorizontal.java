@@ -2,7 +2,7 @@ package model;
 
 public class DeplacementHorizontal implements Deplacement{
 
-	static final int descenteMax = 300;
+	static final int descenteMax = 235;
 	static final int pas = 3;
 	static final int niveauMer = 0;
 	static final int distanceAvancer = 300;
