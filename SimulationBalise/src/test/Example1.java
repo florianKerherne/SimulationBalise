@@ -25,7 +25,7 @@ public class Example1 {
 	}
 	
 	private static void lance(Model model) {
-		World jc = new World("Un essai de Morphs");
+		World jc = new World("Simulateur de balise");
 		for(Entite entite:model.getListEntites()) {
 			entite.addObserver(jc);
 		}
