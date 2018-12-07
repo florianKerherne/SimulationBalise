@@ -5,6 +5,7 @@ public class DeplacementParabol implements Deplacement{
 	static final int descenteMax = 200;
 	static final int pas = 3;
 	static final int niveauMer = 0;
+	static final int BordDroit = 1000;
 	
 	Boolean descente = true;
 	
@@ -18,7 +19,11 @@ public class DeplacementParabol implements Deplacement{
 		}else {
 			monter(position);
 		}
-		position.setX(position.getX() + Math.round(deplacementX));
+		if(position.getX() > BordDroit) {
+			position.setX(0);
+		}else {
+			position.setX(position.getX() + Math.round(deplacementX));
+		}
 		return position;
 	}
 	

@@ -6,6 +6,7 @@ public class DeplacementHorizontal implements Deplacement{
 	static final int pas = 3;
 	static final int niveauMer = 0;
 	static final int distanceAvancer = 300;
+	static final int BordDroit = 1000;
 	
 	int etat = 1;
 	//etat 1 = descendre;
