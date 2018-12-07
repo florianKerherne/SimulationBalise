@@ -10,22 +10,38 @@ public class DeplacementParabol implements Deplacement{
 	
 	@Override
 	public Position Move(Position position) {
-		int positionY = Math.abs(position.getY());
-		int deplacementY = 1 - (positionY/descenteMax);
-		deplacementY = deplacementY * pas + 1;
-		int deplacementX = positionY/descenteMax;
+		float positionY = Math.abs(position.getY());
+		float deplacementX = positionY/descenteMax + 1;
 		deplacementX = deplacementX * pas;
-		if(position.getY() >= -descenteMax && position.getY() > 0) {
-			descente = false;
+		System.out.println(descente);
+		if(descente) {
+			descendre(position);
 		}else {
+			monter(position);
+		}
+		position.setX(position.getX() + Math.round(deplacementX));
+		return position;
+	}
+	
+	public Position descendre(Position position) {
+		float positionY = Math.abs(position.getY());
+		float deplacementY = 1 - (positionY/descenteMax);
+		deplacementY = deplacementY * pas + 1;
+		position.setY(position.getY()-Math.round(deplacementY));
+		if(position.getY() <= -descenteMax) {
+			descente = false;
+		}
+		return position;
+	}
+	
+	public Position monter(Position position) {
+		float positionY = Math.abs(position.getY());
+		float deplacementY = 1 - (positionY/descenteMax);
+		deplacementY = deplacementY * pas + 1;
+		position.setY(position.getY()+Math.round(deplacementY));
+		if(position.getY() > niveauMer) {
 			descente = true;
 		}
-		if(descente) {
-			position.setY(position.getY()-deplacementY);
-		}else {
-			position.setY(position.getY()+deplacementY);
-		}
-		position.setX(position.getX()+deplacementX);
 		return position;
 	}
 

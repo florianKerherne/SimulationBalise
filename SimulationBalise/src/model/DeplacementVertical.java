@@ -11,14 +11,14 @@ public class DeplacementVertical implements Deplacement {
 	@Override
 	public Position Move(Position p) {
 		if(descente) {
-			decsendre(p);
+			descendre(p);
 		}else {
 			monter(p);
 		}
 		return p;
 	}
 	
-	public Position decsendre(Position position) {
+	public Position descendre(Position position) {
 		position.setY(position.getY()-pas);
 		if(position.getY() <= -descenteMax) {
 			descente = false;

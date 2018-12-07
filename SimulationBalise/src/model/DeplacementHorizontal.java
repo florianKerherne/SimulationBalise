@@ -15,7 +15,7 @@ public class DeplacementHorizontal implements Deplacement{
 	@Override
 	public Position Move(Position p) {
 		if(etat == 1) {
-			decsendre(p);
+			descendre(p);
 		}
 		if(etat == 2) {
 			avancer(p);
@@ -26,7 +26,7 @@ public class DeplacementHorizontal implements Deplacement{
 		return p;
 	}
 	
-	public Position decsendre(Position position) {
+	public Position descendre(Position position) {
 		position.setY(position.getY()-pas);
 		if(position.getY() <= -descenteMax) {
 			etat = 2;

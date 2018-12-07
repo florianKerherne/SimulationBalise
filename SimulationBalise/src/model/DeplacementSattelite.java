@@ -7,8 +7,8 @@ public class DeplacementSattelite implements Deplacement{
 	
 	@Override
 	public Position Move(Position position) {
-		if(position.getX() > BordDroit) {
-			position.setX(position.getX()-pas);
+		if(position.getX() < BordDroit) {
+			position.setX(position.getX()+pas);
 		}else {
 			position.setX(0);
 		}
