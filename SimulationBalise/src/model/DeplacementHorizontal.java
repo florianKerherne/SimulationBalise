@@ -51,7 +51,11 @@ public class DeplacementHorizontal implements Deplacement{
 	}
 	
 	public Position avancer(Position position) {
-		position.setX(position.getX()+pas);
+		if(position.getX() > BordDroit) {
+			position.setX(0);
+		}else {
+			position.setX(position.getX()+pas);
+		}
 		if(position.getX()%distanceAvancer < pas) {
 			etat = 3;
 		}
