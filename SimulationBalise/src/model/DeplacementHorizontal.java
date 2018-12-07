@@ -2,7 +2,7 @@ package model;
 
 public class DeplacementHorizontal implements Deplacement{
 
-	static final int decsenteMax = 50;
+	static final int descenteMax = 50;
 	static final int pas = 5;
 	static final int niveauMer = 0;
 	static final int distanceAvancer = 100;
@@ -28,7 +28,7 @@ public class DeplacementHorizontal implements Deplacement{
 	
 	public Position decsendre(Position position) {
 		position.setY(position.getY()-pas);
-		if(position.getY() >= -decsenteMax) {
+		if(position.getY() >= -descenteMax) {
 			etat = 2;
 		}
 		return position;

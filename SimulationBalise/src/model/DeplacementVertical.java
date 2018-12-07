@@ -2,7 +2,7 @@ package model;
 
 public class DeplacementVertical implements Deplacement {
 	
-	static final int decsenteMax = 100;
+	static final int descenteMax = 100;
 	static final int pas = 5;
 	static final int niveauMer = 0;
 	
@@ -20,7 +20,7 @@ public class DeplacementVertical implements Deplacement {
 	
 	public Position decsendre(Position position) {
 		position.setY(position.getY()-pas);
-		if(position.getY() >= -decsenteMax) {
+		if(position.getY() <= -descenteMax) {
 			descente = false;
 		}
 		return position;
@@ -28,7 +28,7 @@ public class DeplacementVertical implements Deplacement {
 	
 	public Position monter(Position position) {
 		position.setY(position.getY()+pas);
-		if(position.getY() <= niveauMer) {
+		if(position.getY() >= niveauMer) {
 			descente = true;
 		}
 		return position;
