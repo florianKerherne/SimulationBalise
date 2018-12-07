@@ -2,8 +2,8 @@ package model;
 
 public class DeplacementVertical implements Deplacement {
 	
-	static final int descenteMax = 100;
-	static final int pas = 5;
+	static final int descenteMax = 250;
+	static final int pas = 3;
 	static final int niveauMer = 0;
 	
 	Boolean descente = true;

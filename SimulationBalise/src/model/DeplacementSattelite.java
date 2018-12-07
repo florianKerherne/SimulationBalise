@@ -2,8 +2,8 @@ package model;
 
 public class DeplacementSattelite implements Deplacement{
 
-	static final int pas = 5;
-	static final int BordDroit = 500;
+	static final int pas = 3;
+	static final int BordDroit = 600;
 	
 	@Override
 	public Position Move(Position position) {

@@ -2,8 +2,8 @@ package model;
 
 public class DeplacementParabol implements Deplacement{
 
-	static final int descenteMax = 100;
-	static final int pas = 5;
+	static final int descenteMax = 200;
+	static final int pas = 3;
 	static final int niveauMer = 0;
 	
 	Boolean descente = true;
@@ -15,7 +15,7 @@ public class DeplacementParabol implements Deplacement{
 		deplacementY = deplacementY * pas + 1;
 		int deplacementX = positionY/descenteMax;
 		deplacementX = deplacementX * pas;
-		if(position.getY() < descenteMax ) {
+		if(position.getY() > descenteMax ) {
 			descente = false;
 		}else {
 			descente = true;
