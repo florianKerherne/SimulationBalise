@@ -15,7 +15,7 @@ public class DeplacementParabol implements Deplacement{
 		deplacementY = deplacementY * pas + 1;
 		int deplacementX = positionY/descenteMax;
 		deplacementX = deplacementX * pas;
-		if(position.getY() >= -descenteMax ) {
+		if(position.getY() >= -descenteMax && position.getY() > 0) {
 			descente = false;
 		}else {
 			descente = true;
