@@ -24,7 +24,7 @@ public class Balise extends Entite implements Observer {
 	}
 
 	@Override
-	public void update() {
+	public void updateSimulation() {
 		executeDeplacement(getPosition(), getDeplacement());
 	}
 

@@ -68,14 +68,16 @@ public class World extends JPanel implements KeyListener,Observer {
 	public void draw(Graphics g,Sattelite sattelite) {
 		Color c = g.getColor();
 		g.setColor(Color.RED);
-		g.fillOval(sattelite.getPosition().getX(),sattelite.getPosition().getY(),10,10);//(bounds.x,bounds.y,bounds.height,bounds.width);
+		int positionY = Math.abs(sattelite.getPosition().getY() -100) ;
+		g.fillOval(sattelite.getPosition().getX(),positionY,10,10);//(bounds.x,bounds.y,bounds.height,bounds.width);
 		g.setColor(c);
 	}
 	
 	public void draw(Graphics g,Balise balise) {
 		Color c = g.getColor();
 		g.setColor(Color.BLUE);
-		g.fillOval(balise.getPosition().getX(),balise.getPosition().getY(),10,10);
+		int positionY = Math.abs(balise.getPosition().getY() -100) ;
+		g.fillOval(balise.getPosition().getX(),positionY,10,10);
 		//(bounds.x,bounds.y,bounds.height,bounds.width);
 		g.setColor(c);
 	}
