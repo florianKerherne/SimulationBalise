@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Observer;
 
 public class Annonceur {
 	
-	Map<Class<?extends Evenement>, List<Observer>> subscriptions;
+	Map<Class<?extends Evenement>, List<ObserverSimulation>> subscriptions;
 	
-	public void subscribes(Class<?extends Evenement> eventKind, Observer o) {
-		List<Observer> listObserver = subscriptions.get(eventKind);
+	public void subscribes(Class<?extends Evenement> eventKind, ObserverSimulation o) {
+		List<ObserverSimulation> listObserver = subscriptions.get(eventKind);
 		if(listObserver == null) {
-			listObserver = new ArrayList<Observer>();
+			listObserver = new ArrayList<ObserverSimulation>();
 			subscriptions.put(eventKind, listObserver);
 		}
 		listObserver.add(o);
@@ -21,12 +20,12 @@ public class Annonceur {
 	
 	public void announce(Evenement e, Object emetteur) {
 		
-		List<Observer> listObserver = subscriptions.get(e.getClass());
+		List<ObserverSimulation> listObserver = subscriptions.get(e.getClass());
 		
 		if(listObserver == null) return;
-		Iterator<Observer> ite = listObserver.iterator();
+		Iterator<ObserverSimulation> ite = listObserver.iterator();
 		while(ite.hasNext()) {
-			//ite.next()getClass().receiveFrom(emetteur, e);
+			ite.next().receiveFrom(emetteur, e);
 		}
 	}
 
