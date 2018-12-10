@@ -12,12 +12,14 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import gestionEvenement.ObserverSimulation;
+import gestionEvenement.evenement.Evenement;
 import model.Balise;
 import model.Entite;
 import model.Model;
 import model.Sattelite;
 
-public class World extends JPanel implements KeyListener,Observer {
+public class World extends JPanel implements KeyListener,ObserverSimulation {
 	private static final long serialVersionUID = 1L;
 
 	Model model;
@@ -113,7 +115,7 @@ public class World extends JPanel implements KeyListener,Observer {
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+	public void receive(Evenement e) {
 		repaint();
 	}
 

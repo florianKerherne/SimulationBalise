@@ -1,5 +1,6 @@
 package model;
 
+import gestionEvenement.evenement.MoveEvenement;
 import model.deplacement.DeplacementSattelite;
 import ressources.GetPropertyValues;
 
@@ -18,7 +19,7 @@ public class Sattelite extends Entite {
 	public void updateSimulation() {
 		executeDeplacement();
 		//TODO Annoncer l evenement deplacer
-		//.announce(new MoveEvenement(), this);
+		//.announce(new MoveEvenement(this), this);
 	}
 	
 	public boolean dansZoneReception(Position pos) {

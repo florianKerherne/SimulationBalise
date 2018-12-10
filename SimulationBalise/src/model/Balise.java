@@ -49,11 +49,11 @@ public class Balise extends Entite implements ObserverSimulation {
 	}
 
 	@Override
-	public void receiveFrom(Object o, Evenement e) {
+	public void receive(Evenement e) {
 		
 		//si e est un signal du satelitte
 		if(getPosition().getY()>=0 && MessageTransmis==false) {
-			Sattelite sattelite = (Sattelite)o;
+			Sattelite sattelite = (Sattelite)e.getSource();
 			if(sattelite.dansZoneReception(getPosition())) {
 				sattelite.transmitionMessage("coucou");
 				MessageTransmis=true;
