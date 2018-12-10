@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.deplacement.Deplacement;
+
 public class Model {
 
 	private List<Entite> listEntites;
@@ -24,14 +26,6 @@ public class Model {
 		listEntites.add(satelite);
 		return satelite;
 	}
-	
-	/*public Entite createBalise(int x,int y) {
-		Balise balise = new Balise();
-		sendObserver(balise);
-		balise.setPosition(new Position(x,y));
-		listEntites.add(balise);
-		return balise;
-	}*/
 	
 	public Entite createBalise(int x,int y,Deplacement dep) {
 		Balise balise = new Balise(dep,new Position(x,y));

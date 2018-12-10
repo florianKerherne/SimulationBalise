@@ -1,4 +1,6 @@
-package model;
+package model.deplacement;
+
+import model.Position;
 
 public interface Deplacement {
 	

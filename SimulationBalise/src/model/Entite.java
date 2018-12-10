@@ -1,5 +1,7 @@
 package model;
 
+import model.deplacement.Deplacement;
+
 public abstract class Entite{
 	
 	private Deplacement deplacement;

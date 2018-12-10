@@ -3,11 +3,12 @@ package test;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import model.DeplacementHorizontal;
-import model.DeplacementParabol;
-import model.DeplacementVertical;
+
 import model.Entite;
 import model.Model;
+import model.deplacement.DeplacementHorizontal;
+import model.deplacement.DeplacementParabol;
+import model.deplacement.DeplacementVertical;
 import ressources.GetPropertyValues;
 import vue.World;
 

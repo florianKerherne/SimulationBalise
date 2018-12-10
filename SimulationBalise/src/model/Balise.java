@@ -5,6 +5,7 @@ import java.util.Observer;
 
 import gestionEvenement.Evenement;
 import gestionEvenement.ObserverSimulation;
+import model.deplacement.Deplacement;
 
 public class Balise extends Entite implements ObserverSimulation {
 

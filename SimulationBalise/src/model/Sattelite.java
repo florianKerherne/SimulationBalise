@@ -1,10 +1,6 @@
 package model;
 
-import java.util.Observable;
-import java.util.Observer;
-
-import gestionEvenement.Annonceur;
-import gestionEvenement.MoveEvenement;
+import model.deplacement.DeplacementSattelite;
 import ressources.GetPropertyValues;
 
 public class Sattelite extends Entite {
@@ -16,7 +12,6 @@ public class Sattelite extends Entite {
 		setDeplacement(new DeplacementSattelite());
 		setPosition(position);
 		BordDroit = GetPropertyValues.getValuePropertie("BordDroit");
-		//System.out.println(BordDroit);
 	}
 
 	@Override
@@ -24,7 +19,6 @@ public class Sattelite extends Entite {
 		executeDeplacement();
 		//TODO Annoncer l evenement deplacer
 		//.announce(new MoveEvenement(), this);
-		//setPosition(new Position(getPosition().getX()+1,getPosition().getY()));
 	}
 	
 	public boolean dansZoneReception(Position pos) {

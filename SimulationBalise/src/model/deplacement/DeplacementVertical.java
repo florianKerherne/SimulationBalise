@@ -1,5 +1,6 @@
-package model;
+package model.deplacement;
 
+import model.Position;
 import ressources.GetPropertyValues;
 
 public class DeplacementVertical implements Deplacement {
