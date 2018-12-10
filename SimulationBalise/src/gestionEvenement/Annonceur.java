@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import gestionEvenement.evenement.Evenement;
+
 public class Annonceur {
 	
 	Map<Class<?extends Evenement>, List<ObserverSimulation>> subscriptions;
@@ -16,6 +18,11 @@ public class Annonceur {
 			subscriptions.put(eventKind, listObserver);
 		}
 		listObserver.add(o);
+	}
+	
+	public void unsubscribes(Class<?extends Evenement> eventKind, ObserverSimulation o) {
+		
+		
 	}
 	
 	public void announce(Evenement e, Object emetteur) {

@@ -3,8 +3,8 @@ package model;
 import java.util.Observable;
 import java.util.Observer;
 
-import gestionEvenement.Evenement;
 import gestionEvenement.ObserverSimulation;
+import gestionEvenement.evenement.Evenement;
 import model.deplacement.Deplacement;
 
 public class Balise extends Entite implements ObserverSimulation {
