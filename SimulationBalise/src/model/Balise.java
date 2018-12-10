@@ -1,8 +1,5 @@
 package model;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import gestionEvenement.ObserverSimulation;
 import gestionEvenement.evenement.Evenement;
 import model.deplacement.Deplacement;

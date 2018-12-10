@@ -29,9 +29,6 @@ public class Model {
 	
 	public Entite createBalise(int x,int y,Deplacement dep) {
 		Balise balise = new Balise(dep,new Position(x,y));
-		//balise.setDeplacement(dep);
-		//sendObserver(balise);
-		//balise.setPosition(new Position(x,y));
 		listEntites.add(balise);
 		return balise;
 	}
