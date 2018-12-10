@@ -1,5 +1,5 @@
 package gestionEvenement.evenement;
 
-public class SyncEvenement {
+public class SyncEvenement extends Evenement{
 
 }

@@ -22,7 +22,15 @@ public class Annonceur {
 	
 	public void unsubscribes(Class<?extends Evenement> eventKind, ObserverSimulation o) {
 		
-		
+		List<ObserverSimulation> listObserver = subscriptions.get(eventKind);
+		Iterator<ObserverSimulation> itor =  listObserver.iterator();
+		while (itor.hasNext()) {
+			ObserverSimulation current = itor.next();
+			if (o == current) itor.remove();
+		}
+		if (listObserver.isEmpty()) {
+			subscriptions.remove(eventKind);
+		}
 	}
 	
 	public void announce(Evenement e, Object emetteur) {
@@ -32,7 +40,7 @@ public class Annonceur {
 		if(listObserver == null) return;
 		Iterator<ObserverSimulation> ite = listObserver.iterator();
 		while(ite.hasNext()) {
-			ite.next().receiveFrom(emetteur, e);
+			ite.next().receive(e);
 		}
 	}
 
