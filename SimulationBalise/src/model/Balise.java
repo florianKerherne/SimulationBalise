@@ -13,6 +13,7 @@ public class Balise extends Entite implements ObserverSimulation {
 	}
 	
 	public Balise(Deplacement deplacement) {
+		//garder la liste de tout les satellite
 		this(deplacement,new Position(0,0));
 	}
 
@@ -36,7 +37,7 @@ public class Balise extends Entite implements ObserverSimulation {
 		} else {	//si a la surface
 			
 			//si pas inscrit a la l annonceur
-			//s inscrire a la liste
+			//s inscrire a tout les annonceur de satellite
 			
 			//si j ai transmis mon message au satellite
 			if(MessageTransmis) {
