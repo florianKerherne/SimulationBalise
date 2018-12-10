@@ -3,7 +3,10 @@ package model;
 import java.util.Observable;
 import java.util.Observer;
 
-public class Balise extends Entite implements Observer {
+import gestionEvenement.Evenement;
+import gestionEvenement.ObserverSimulation;
+
+public class Balise extends Entite implements ObserverSimulation {
 
 	boolean MessageTransmis = true;
 	public Balise(Deplacement deplacement,Position position) {
@@ -15,7 +18,7 @@ public class Balise extends Entite implements Observer {
 		this(deplacement,new Position(0,0));
 	}
 
-	@Override
+	/*@Override
 	public void update(Observable arg0, Object arg1) {
 		if(getPosition().getY()>=0 && MessageTransmis==false) {
 			Sattelite sattelite = (Sattelite)arg0;
@@ -24,29 +27,41 @@ public class Balise extends Entite implements Observer {
 				MessageTransmis=true;
 			}
 		}
-	}
+	}*/
 
-	@Override
-	public void sendObserver(Observable o) {
-		o.addObserver(this);
-	}
-
-	@Override
-	public void sendObservable(Observer o) {
-		
-	}
-
+	//a chaque frame
 	@Override
 	public void updateSimulation() {
+		//si immerge
 		if(getPosition().getY()<0) {
 			executeDeplacement();
-		} else {
+		} else {	//si a la surface
+			
+			//si pas inscrit a la l annonceur
+			//s inscrire a la liste
+			
+			//si j ai transmis mon message au satellite
 			if(MessageTransmis) {
+				//plonger
 				executeDeplacement();
 				MessageTransmis=false;				
 			}
 			
 		}
+	}
+
+	@Override
+	public void receiveFrom(Object o, Evenement e) {
+		
+		//si e est un signal du satelitte
+		if(getPosition().getY()>=0 && MessageTransmis==false) {
+			Sattelite sattelite = (Sattelite)o;
+			if(sattelite.dansZoneReception(getPosition())) {
+				sattelite.transmitionMessage("coucou");
+				MessageTransmis=true;
+			}
+		}
+		//TODO se desinscrire de la liste
 	}
 
 }

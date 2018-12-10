@@ -1,9 +1,6 @@
 package model;
 
-import java.util.Observable;
-import java.util.Observer;
-
-public abstract class Entite extends Observable{
+public abstract class Entite{
 	
 	private Deplacement deplacement;
 	private Position position;
@@ -15,10 +12,7 @@ public abstract class Entite extends Observable{
 
 	public void setPosition(Position position) {
 		this.position = position;
-		setChanged();
-		notifyObservers();
 	}
-
 	
 
 	public Deplacement getDeplacement() {
@@ -33,15 +27,9 @@ public abstract class Entite extends Observable{
 		Position result = null;
 		if(deplacement!=null && position!=null) {
 			deplacement.Move(position);
-			setChanged();
-			notifyObservers();
 		}
 	     return result;
 	}
-	
-	public abstract void sendObserver(Observable o);
-	
-	public abstract void sendObservable(Observer o);
 
 	public abstract void updateSimulation();
 }

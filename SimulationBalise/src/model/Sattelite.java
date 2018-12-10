@@ -3,6 +3,8 @@ package model;
 import java.util.Observable;
 import java.util.Observer;
 
+import gestionEvenement.Annonceur;
+import gestionEvenement.MoveEvenement;
 import ressources.GetPropertyValues;
 
 public class Sattelite extends Entite {
@@ -18,18 +20,10 @@ public class Sattelite extends Entite {
 	}
 
 	@Override
-	public void sendObserver(Observable o) {
-		
-	}
-
-	@Override
-	public void sendObservable(Observer o) {
-		this.addObserver(o);
-	}
-
-	@Override
 	public void updateSimulation() {
 		executeDeplacement();
+		//TODO Annoncer l evenement deplacer
+		//.announce(new MoveEvenement(), this);
 		//setPosition(new Position(getPosition().getX()+1,getPosition().getY()));
 	}
 	

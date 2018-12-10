@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.Balise;
+import model.Entite;
 import model.Model;
 import model.Sattelite;
 
@@ -51,12 +52,12 @@ public class World extends JPanel implements KeyListener,Observer {
 		
 		super.paint(g);
 		drawDecors(g);
-		for(Observable entity: model.getListEntites()) {
+		for(Entite entity: model.getListEntites()) {
 			draw(g,entity);
 		}
 	}
 	
-	private void draw(Graphics g, Observable entity) {
+	private void draw(Graphics g, Entite entity) {
 		if(entity instanceof Sattelite)draw(g,(Sattelite)entity);
 		if(entity instanceof Balise)draw(g,(Balise)entity);
 	}

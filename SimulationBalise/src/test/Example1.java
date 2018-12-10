@@ -26,9 +26,9 @@ public class Example1 {
 	
 	private static void lance(Model model) {
 		World jc = new World("Simulateur de balise");
-		for(Entite entite:model.getListEntites()) {
+		/*for(Entite entite:model.getListEntites()) {
 			entite.addObserver(jc);
-		}
+		}*/
 		jc.setBackground(Color.WHITE);
 		jc.setPreferredSize(new Dimension(GetPropertyValues.getValuePropertie("BordDroit"), 600));
 

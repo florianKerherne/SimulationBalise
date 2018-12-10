@@ -2,8 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 public class Model {
 
@@ -23,8 +21,6 @@ public class Model {
 	
 	public Entite createSattelite(int x,int y) {
 		Sattelite satelite = new Sattelite(new Position(x,y));
-		//satelite.addObserver(o);
-		sendObservable(satelite);
 		listEntites.add(satelite);
 		return satelite;
 	}
@@ -40,22 +36,10 @@ public class Model {
 	public Entite createBalise(int x,int y,Deplacement dep) {
 		Balise balise = new Balise(dep,new Position(x,y));
 		//balise.setDeplacement(dep);
-		sendObserver(balise);
+		//sendObserver(balise);
 		//balise.setPosition(new Position(x,y));
 		listEntites.add(balise);
 		return balise;
-	}
-	
-	private void sendObservable(Observable o) {
-		for(Entite entite:listEntites) {
-			entite.sendObserver(o);
-		}
-	}
-	
-	private void sendObserver(Observer o) {
-		for(Entite entite:listEntites) {
-			entite.sendObservable(o);
-		}
 	}
 	
 	public void updateSimulation() {
