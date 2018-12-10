@@ -4,7 +4,7 @@ public abstract class Evenement {
 
 	Object source;
 	
-	public void setSource(Object source) {
+	public Evenement(Object source) {
 		this.source = source;
 	}
 	
