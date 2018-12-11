@@ -1,6 +1,7 @@
 package gestionEvenement;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,10 @@ import gestionEvenement.evenement.Evenement;
 public class Annonceur {
 	
 	Map<Class<?extends Evenement>, List<ObserverSimulation>> subscriptions;
+	
+	public Annonceur() {
+		subscriptions = new HashMap<Class<? extends Evenement>, List<ObserverSimulation>>();
+	}
 	
 	public void subscribes(Class<?extends Evenement> eventKind, ObserverSimulation o) {
 		List<ObserverSimulation> listObserver = subscriptions.get(eventKind);
@@ -33,14 +38,18 @@ public class Annonceur {
 		}
 	}
 	
-	public void announce(Evenement e, Object emetteur) {
+	public void announce(Evenement e) {
 		
 		List<ObserverSimulation> listObserver = subscriptions.get(e.getClass());
 		
 		if(listObserver == null) return;
-		Iterator<ObserverSimulation> ite = listObserver.iterator();
-		while(ite.hasNext()) {
+		//Iterator<ObserverSimulation> ite = listObserver.iterator();
+		/*while(ite.hasNext()) {
 			ite.next().receive(e);
+		}*/
+		for(ObserverSimulation obs:listObserver) {
+			//System.out.println(obs);
+			obs.receive(e);
 		}
 	}
 

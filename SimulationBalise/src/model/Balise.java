@@ -45,7 +45,7 @@ public class Balise extends Entite implements ObserverSimulation {
 			//si j ai transmis mon message au satellite
 			if(MessageTransmis) {
 				//plonger
-				
+				unsubscribes();
 				executeDeplacement();
 				MessageTransmis=false;				
 			}
@@ -55,7 +55,7 @@ public class Balise extends Entite implements ObserverSimulation {
 
 	@Override
 	public void receive(Evenement e) {
-		
+		//System.out.println("receive");
 		//si e est un signal du satelitte
 		if(getPosition().getY()>=0 && MessageTransmis==false) {
 			Sattelite sattelite = (Sattelite)e.getSource();
@@ -64,8 +64,6 @@ public class Balise extends Entite implements ObserverSimulation {
 				MessageTransmis=true;
 			}
 		}
-		//se desinscrire de la liste
-		unsubscribes();
 	}
 	
 	private void subscribes() {
@@ -73,6 +71,7 @@ public class Balise extends Entite implements ObserverSimulation {
 			if(entite instanceof Sattelite) {
 				Sattelite satellite = (Sattelite)entite;
 				satellite.getAnnonceur().subscribes(MoveEvenement.class, this);
+				//System.out.println("inscription");
 			}
 		}
 	}

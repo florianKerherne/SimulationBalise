@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import gestionEvenement.ObserverSimulation;
 import gestionEvenement.evenement.Evenement;
+import gestionEvenement.evenement.MoveEvenement;
 import model.Balise;
 import model.Entite;
 import model.Model;
@@ -48,6 +49,12 @@ public class World extends JPanel implements KeyListener,ObserverSimulation {
 		frame.pack();
 		frame.setVisible(true);
 		requestFocus();
+		
+		//ecoute des entite
+		for(Entite entite:model.getListEntites()) {
+			entite.getAnnonceur().subscribes(MoveEvenement.class, this);
+		}
+		
 	}
 
 	public void paint(Graphics g) {

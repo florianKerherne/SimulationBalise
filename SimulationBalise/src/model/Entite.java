@@ -1,6 +1,7 @@
 package model;
 
 import gestionEvenement.Annonceur;
+import gestionEvenement.evenement.MoveEvenement;
 import model.deplacement.Deplacement;
 
 public abstract class Entite{
@@ -40,6 +41,7 @@ public abstract class Entite{
 		Position result = null;
 		if(deplacement!=null && position!=null) {
 			deplacement.Move(position);
+			annonceur.announce(new MoveEvenement(this));
 		}
 	     return result;
 	}
