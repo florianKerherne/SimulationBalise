@@ -1,8 +1,8 @@
 package model;
 
 import gestionEvenement.ObserverSimulation;
-import gestionEvenement.evenement.Evenement;
 import gestionEvenement.evenement.MoveEvenement;
+import gestionEvenement.evenement.SyncEvenement;
 import model.deplacement.Deplacement;
 
 public class Balise extends Entite implements ObserverSimulation {
@@ -54,7 +54,7 @@ public class Balise extends Entite implements ObserverSimulation {
 	}
 
 	@Override
-	public void receive(Evenement e) {
+	public void receive(MoveEvenement e) {
 		//System.out.println("receive");
 		//si e est un signal du satelitte
 		if(getPosition().getY()>=0 && MessageTransmis==false) {
@@ -83,6 +83,11 @@ public class Balise extends Entite implements ObserverSimulation {
 				satellite.getAnnonceur().unsubscribes(MoveEvenement.class, this);
 			}
 		}
+	}
+
+	@Override
+	public void receive(SyncEvenement syncEvenement) {
+		
 	}
 
 }

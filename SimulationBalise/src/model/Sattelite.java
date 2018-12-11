@@ -1,6 +1,5 @@
 package model;
 
-import gestionEvenement.evenement.MoveEvenement;
 import model.deplacement.DeplacementSattelite;
 import ressources.GetPropertyValues;
 

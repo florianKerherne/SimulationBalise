@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import gestionEvenement.ObserverSimulation;
 import gestionEvenement.evenement.Evenement;
 import gestionEvenement.evenement.MoveEvenement;
+import gestionEvenement.evenement.SyncEvenement;
 import model.Balise;
 import model.Entite;
 import model.Model;
@@ -131,7 +132,12 @@ public class World extends JPanel implements KeyListener,ObserverSimulation {
 	}
 
 	@Override
-	public void receive(Evenement e) {
+	public void receive(MoveEvenement moveEvenement) {
+		repaint();
+	}
+
+	@Override
+	public void receive(SyncEvenement syncEvenement) {
 		repaint();
 	}
 

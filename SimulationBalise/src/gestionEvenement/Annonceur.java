@@ -49,7 +49,8 @@ public class Annonceur {
 		}*/
 		for(ObserverSimulation obs:listObserver) {
 			//System.out.println(obs);
-			obs.receive(e);
+			e.sendTo(obs);
+			//obs.receive(e);
 		}
 	}
 
