@@ -16,6 +16,10 @@ public class Balise extends Entite implements ObserverSimulation {
 		//garder la liste de tout les satellite
 		this(deplacement,new Position(0,0));
 	}
+	
+	public boolean getMessageTransmis() {
+		return MessageTransmis;
+	}
 
 	/*@Override
 	public void update(Observable arg0, Object arg1) {

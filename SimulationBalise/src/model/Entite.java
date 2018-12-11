@@ -1,12 +1,21 @@
 package model;
 
+import gestionEvenement.Annonceur;
 import model.deplacement.Deplacement;
 
 public abstract class Entite{
 	
+	private Annonceur annonceur;
 	private Deplacement deplacement;
 	private Position position;
 	
+	public Entite() {
+		annonceur = new Annonceur();
+	}
+	
+	public Annonceur getAnnonceur() {
+		return annonceur;
+	}
 	
 	public Position getPosition() {
 		return position;
