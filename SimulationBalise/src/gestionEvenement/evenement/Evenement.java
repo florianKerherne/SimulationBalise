@@ -1,5 +1,7 @@
 package gestionEvenement.evenement;
 
+import gestionEvenement.ObserverSimulation;
+
 public abstract class Evenement {
 
 	Object source;
@@ -11,5 +13,7 @@ public abstract class Evenement {
 	public Object getSource() {
 		return source;
 	}
+	
+	public abstract void sendTo(ObserverSimulation o);
 
 }
