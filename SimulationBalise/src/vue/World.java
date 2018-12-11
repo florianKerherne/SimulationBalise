@@ -77,7 +77,16 @@ public class World extends JPanel implements KeyListener,ObserverSimulation {
 	
 	public void draw(Graphics g,Balise balise) {
 		Color c = g.getColor();
-		g.setColor(Color.BLUE);
+		if(balise.getPosition().getX() < 0) {
+			g.setColor(Color.BLUE);
+		}
+		if(balise.getPosition().getX() > 0) {
+			g.setColor(Color.ORANGE);
+		}
+		if(balise.getMessageTransmis()) {
+			g.setColor(Color.YELLOW);
+		}
+		
 		int positionY = Math.abs(balise.getPosition().getY() -100) ;
 		g.fillOval(balise.getPosition().getX(),positionY,10,10);
 		//(bounds.x,bounds.y,bounds.height,bounds.width);
