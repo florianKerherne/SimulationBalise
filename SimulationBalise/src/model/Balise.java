@@ -2,19 +2,21 @@ package model;
 
 import gestionEvenement.ObserverSimulation;
 import gestionEvenement.evenement.Evenement;
+import gestionEvenement.evenement.MoveEvenement;
 import model.deplacement.Deplacement;
 
 public class Balise extends Entite implements ObserverSimulation {
 
 	boolean MessageTransmis = true;
-	public Balise(Deplacement deplacement,Position position) {
+	public Balise(Model model,Deplacement deplacement,Position position) {
+		super(model);
 		setDeplacement(deplacement);
 		setPosition(position);
 	}
 	
-	public Balise(Deplacement deplacement) {
+	public Balise(Model model,Deplacement deplacement) {
 		//garder la liste de tout les satellite
-		this(deplacement,new Position(0,0));
+		this(model,deplacement,new Position(0,0));
 	}
 	
 	public boolean getMessageTransmis() {
@@ -38,14 +40,12 @@ public class Balise extends Entite implements ObserverSimulation {
 		//si immerge
 		if(getPosition().getY()<0) {
 			executeDeplacement();
+			if(getPosition().getY()>=0) subscribes();
 		} else {	//si a la surface
-			
-			//si pas inscrit a la l annonceur
-			//s inscrire a tout les annonceur de satellite
-			
 			//si j ai transmis mon message au satellite
 			if(MessageTransmis) {
 				//plonger
+				
 				executeDeplacement();
 				MessageTransmis=false;				
 			}
@@ -64,7 +64,26 @@ public class Balise extends Entite implements ObserverSimulation {
 				MessageTransmis=true;
 			}
 		}
-		//TODO se desinscrire de la liste
+		//se desinscrire de la liste
+		unsubscribes();
+	}
+	
+	private void subscribes() {
+		for(Entite entite:model.getListEntites()) {
+			if(entite instanceof Sattelite) {
+				Sattelite satellite = (Sattelite)entite;
+				satellite.getAnnonceur().subscribes(MoveEvenement.class, this);
+			}
+		}
+	}
+	
+	private void unsubscribes() {
+		for(Entite entite:model.getListEntites()) {
+			if(entite instanceof Sattelite) {
+				Sattelite satellite = (Sattelite)entite;
+				satellite.getAnnonceur().unsubscribes(MoveEvenement.class, this);
+			}
+		}
 	}
 
 }

@@ -6,10 +6,12 @@ import model.deplacement.Deplacement;
 public abstract class Entite{
 	
 	private Annonceur annonceur;
+	protected Model model;
 	private Deplacement deplacement;
 	private Position position;
 	
-	public Entite() {
+	public Entite(Model model) {
+		this.model	= model;
 		annonceur = new Annonceur();
 	}
 	

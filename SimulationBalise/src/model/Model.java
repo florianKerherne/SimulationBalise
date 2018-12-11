@@ -22,13 +22,13 @@ public class Model {
 	}
 	
 	public Entite createSattelite(int x,int y) {
-		Sattelite satelite = new Sattelite(new Position(x,y));
+		Sattelite satelite = new Sattelite(this,new Position(x,y));
 		listEntites.add(satelite);
 		return satelite;
 	}
 	
 	public Entite createBalise(int x,int y,Deplacement dep) {
-		Balise balise = new Balise(dep,new Position(x,y));
+		Balise balise = new Balise(this,dep,new Position(x,y));
 		listEntites.add(balise);
 		return balise;
 	}

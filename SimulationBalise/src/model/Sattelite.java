@@ -9,7 +9,8 @@ public class Sattelite extends Entite {
 	static final int largeurZone = 10;
 	final int BordDroit ;
 	
-	public Sattelite(Position position) {
+	public Sattelite(Model model,Position position) {
+		super(model);
 		setDeplacement(new DeplacementSattelite());
 		setPosition(position);
 		BordDroit = GetPropertyValues.getValuePropertie("BordDroit");
