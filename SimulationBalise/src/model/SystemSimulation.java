@@ -7,11 +7,11 @@ import model.deplacement.Deplacement;
 import visiteur.Visitable;
 import visiteur.Visiteur;
 
-public class Model implements Visitable {
+public class SystemSimulation implements Visitable {
 
 	private List<Entite> listEntites;
 	
-	public Model() {
+	public SystemSimulation() {
 		this.listEntites = new ArrayList<Entite>();
 	}
 

@@ -9,7 +9,7 @@ public class Sattelite extends Entite {
 	static final int largeurZone = 10;
 	final int BordDroit ;
 	
-	public Sattelite(Model model,Position position) {
+	public Sattelite(SystemSimulation model,Position position) {
 		super(model);
 		setDeplacement(new DeplacementSattelite());
 		setPosition(position);

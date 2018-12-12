@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import model.Balise;
 import model.Entite;
-import model.Model;
+import model.SystemSimulation;
 import model.Sattelite;
 
 public class VisiteurDraw extends Visiteur {
@@ -16,7 +16,7 @@ public class VisiteurDraw extends Visiteur {
 		drawDecors();
 	}
 	@Override
-	public void visit(Model model) {
+	public void visit(SystemSimulation model) {
 		for(Entite entity: model.getListEntites()) {
 			entity.accept(this);
 		}

@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import model.Entite;
-import model.Model;
+import model.SystemSimulation;
 import model.deplacement.DeplacementHorizontal;
 import model.deplacement.DeplacementParabol;
 import model.deplacement.DeplacementVertical;
@@ -16,7 +16,7 @@ import vue.World;
 public class Example1 {
 
 	public static void main(String[] args) {
-		Model model = new Model();
+		SystemSimulation model = new SystemSimulation();
 		model.createBalise(150,0,new DeplacementVertical());
 		model.createBalise(50,0,new DeplacementHorizontal());
 		model.createBalise(00,0,new DeplacementParabol());
@@ -25,7 +25,7 @@ public class Example1 {
 		lance(model);
 	}
 	
-	private static void lance(Model model) {
+	private static void lance(SystemSimulation model) {
 		World jc = new World("Simulateur de balise");
 		/*for(Entite entite:model.getListEntites()) {
 			entite.addObserver(jc);

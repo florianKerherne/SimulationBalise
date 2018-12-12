@@ -9,13 +9,13 @@ import visiteur.Visiteur;
 public class Balise extends Entite implements ObserverSimulation {
 
 	boolean MessageTransmis = true;
-	public Balise(Model model,Deplacement deplacement,Position position) {
+	public Balise(SystemSimulation model,Deplacement deplacement,Position position) {
 		super(model);
 		setDeplacement(deplacement);
 		setPosition(position);
 	}
 	
-	public Balise(Model model,Deplacement deplacement) {
+	public Balise(SystemSimulation model,Deplacement deplacement) {
 		//garder la liste de tout les satellite
 		this(model,deplacement,new Position(0,0));
 	}

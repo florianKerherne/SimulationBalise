@@ -12,13 +12,13 @@ import gestionEvenement.ObserverSimulation;
 import gestionEvenement.evenement.MoveEvenement;
 import gestionEvenement.evenement.SyncEvenement;
 import model.Entite;
-import model.Model;
+import model.SystemSimulation;
 import visiteur.VisiteurDraw;
 
 public class World extends JPanel implements KeyListener,ObserverSimulation {
 	private static final long serialVersionUID = 1L;
 
-	Model model;
+	SystemSimulation model;
 	private KeyListener keyListener;
 
 	String name = "";
@@ -28,7 +28,7 @@ public class World extends JPanel implements KeyListener,ObserverSimulation {
 		this.addKeyListener(this);
 	}
 
-	public void setModel(Model model) {
+	public void setModel(SystemSimulation model) {
 		this.model = model;
 	}
 

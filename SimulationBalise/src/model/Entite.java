@@ -8,11 +8,11 @@ import visiteur.Visitable;
 public abstract class Entite implements Visitable{
 	
 	private Annonceur annonceur;
-	protected Model model;
+	protected SystemSimulation model;
 	private Deplacement deplacement;
 	private Position position;
 	
-	public Entite(Model model) {
+	public Entite(SystemSimulation model) {
 		this.model	= model;
 		annonceur = new Annonceur();
 	}
