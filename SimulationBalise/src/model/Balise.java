@@ -8,7 +8,8 @@ import visiteur.Visiteur;
 
 public class Balise extends Entite implements ObserverSimulation {
 
-	boolean MessageTransmis = true;
+	boolean etatTransmission=false;
+	int DonneeMessage = 0;
 	public Balise(SystemSimulation model,Deplacement deplacement,Position position) {
 		super(model);
 		setDeplacement(deplacement);
@@ -21,7 +22,7 @@ public class Balise extends Entite implements ObserverSimulation {
 	}
 	
 	public boolean getMessageTransmis() {
-		return MessageTransmis;
+		return etatTransmission;
 	}
 
 	//a chaque frame
@@ -30,25 +31,28 @@ public class Balise extends Entite implements ObserverSimulation {
 		//si immerge
 		if(getPosition().getY()<0) {
 			executeDeplacement();
+			DonneeMessage++;
 			if(getPosition().getY()>=0) subscribes();
 		} else {	//si a la surface
 			//si j ai transmis mon message au satellite
-			if(MessageTransmis) {
+			if(DonneeMessage <=0) {
 				//plonger
 				unsubscribes();
 				executeDeplacement();
-				MessageTransmis=false;				
+				//MessageTransmis=false;				
 			}
 		}
+		etatTransmission=false;
 	}
 
 	@Override
 	public void receive(MoveEvenement e) {
-		if(getPosition().getY()>=0 && MessageTransmis==false) {
+		if(getPosition().getY()>=0 && DonneeMessage>0) {
 			Sattelite sattelite = (Sattelite)e.getSource();
 			if(sattelite.dansZoneReception(getPosition())) {
-				sattelite.transmitionMessage("coucou");
-				MessageTransmis=true;
+				sattelite.transmitionMessage("donnee "+DonneeMessage);
+				DonneeMessage-=10;
+				etatTransmission=true;
 			}
 		}
 	}

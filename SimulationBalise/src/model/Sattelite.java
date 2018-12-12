@@ -6,7 +6,7 @@ import visiteur.Visiteur;
 
 public class Sattelite extends Entite {
 
-	static final int largeurZone = 10;
+	static final int largeurZone = 25;
 	final int BordDroit ;
 	
 	public Sattelite(SystemSimulation model,Position position) {
