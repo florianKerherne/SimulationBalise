@@ -1,21 +1,24 @@
 package vue;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.util.Map;
 
+import gestionEvenement.evenement.MoveEvenement;
 import model.Entite;
 import model.SystemSimulation;
-import model.deplacement.DeplacementVertical;
 
-public class Interpreteur {
+public class Interpreteur implements KeyListener{
 
 	SystemSimulation model;
 	World jc;
 	Map<String,Entite> tabVariable;
 	
-	Interpreteur(SystemSimulation model,World jc){
+	public Interpreteur(SystemSimulation model,World jc){
 		this.model	= model;
 		this.jc	= jc;
+		jc.getSaisie().addKeyListener(this);
 	}
 	
 	public boolean interpret(String command) {
@@ -57,17 +60,22 @@ public class Interpreteur {
 		if(command.length!=3) {
 			throw new  IOException("");
 		}
+		Entite entite;
 		switch (command[2]) {
 		case "balise":
-			model.createBalise();
+			entite	= model.createBalise();
 			break;
 		case "satellite":
-			model.createSattelite();
+			entite	= model.createSattelite();
+			
 			break;
 		default:
 			throw new  IOException("");
 		}
-		
+		//garder en memoire la variable
+		tabVariable.put(command[3], entite);
+		//la vue ecoute l'entite
+		entite.getAnnonceur().subscribes(MoveEvenement.class, jc);
 	}
 	
 	private void commandDelete(String[] command) throws IOException {
@@ -108,6 +116,23 @@ public class Interpreteur {
 
 
 	private void log(String error) {
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		jc.getLog().setText(jc.getSaisie().getText());
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }
