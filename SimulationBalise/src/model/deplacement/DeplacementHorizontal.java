@@ -5,9 +5,9 @@ import ressources.GetPropertyValues;
 
 public class DeplacementHorizontal implements Deplacement{
 
-	static final int descenteMax = 235;
-	static final int pas = 3;
-	static final int distanceAvancer = 300;
+	final int descenteMax;
+	final int pas;
+	final int distanceAvancer;
 	final int niveauMer;
 	final int BordDroit;
 	
@@ -19,6 +19,10 @@ public class DeplacementHorizontal implements Deplacement{
 	public DeplacementHorizontal() {
 		BordDroit = GetPropertyValues.getValuePropertie("BordDroit");
 		niveauMer = GetPropertyValues.getValuePropertie("niveauMer");
+		descenteMax = GetPropertyValues.getValuePropertie("fondOcean")-25;
+		pas = GetPropertyValues.getValuePropertie("pasSimulation");
+		distanceAvancer = GetPropertyValues.getValuePropertie("avancerHorizontal");
+		
 	}
 	
 	@Override

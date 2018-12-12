@@ -71,7 +71,8 @@ public class VisiteurDraw extends Visiteur {
 	}
 	
 	public void drawDecors() {
-		graphique.fillRect(0, niveauMer+300, 2000, 1);
+		int bordDroit = GetPropertyValues.getValuePropertie("BordDroit");
+		graphique.fillRect(0, niveauMer+300, bordDroit, 1);
 	}
 
 }

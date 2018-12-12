@@ -5,14 +5,16 @@ import ressources.GetPropertyValues;
 
 public class DeplacementVertical implements Deplacement {
 	
-	static final int descenteMax = 250;
-	static final int pas = 3;
+	final int descenteMax;
+	final int pas;
 	final int niveauMer;
 	
 	Boolean descente = true;
 	
 	public DeplacementVertical() {
 		niveauMer = GetPropertyValues.getValuePropertie("niveauMer");
+		pas = GetPropertyValues.getValuePropertie("pasSimulation");
+		descenteMax = GetPropertyValues.getValuePropertie("fondOcean");
 	}
 	
 	@Override

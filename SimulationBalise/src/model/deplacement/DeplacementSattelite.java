@@ -5,11 +5,12 @@ import ressources.GetPropertyValues;
 
 public class DeplacementSattelite implements Deplacement{
 
-	static final int pas = 3;
+	final int pas;
 	final int BordDroit;
 	
 	public DeplacementSattelite() {
 		BordDroit = GetPropertyValues.getValuePropertie("BordDroit");
+		pas = GetPropertyValues.getValuePropertie("pasSimulation");
 	}
 	
 	@Override

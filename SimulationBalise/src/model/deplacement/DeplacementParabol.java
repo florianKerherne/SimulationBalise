@@ -5,8 +5,8 @@ import ressources.GetPropertyValues;
 
 public class DeplacementParabol implements Deplacement{
 
-	static final int descenteMax = 200;
-	static final int pas = 3;
+	final int descenteMax;
+	final int pas;
 	final int niveauMer;
 	final int BordDroit;
 	
@@ -15,6 +15,8 @@ public class DeplacementParabol implements Deplacement{
 	public DeplacementParabol() {
 		BordDroit = GetPropertyValues.getValuePropertie("BordDroit");
 		niveauMer = GetPropertyValues.getValuePropertie("niveauMer");
+		pas = GetPropertyValues.getValuePropertie("pasSimulation");
+		descenteMax = GetPropertyValues.getValuePropertie("fondOcean")-50;
 	}
 	
 	@Override

@@ -6,7 +6,7 @@ import visiteur.Visiteur;
 
 public class Sattelite extends Entite {
 
-	static final int largeurZone = 25;
+	int largeurZone;
 	final int BordDroit ;
 	
 	public Sattelite(SystemSimulation model,Position position) {
@@ -14,6 +14,7 @@ public class Sattelite extends Entite {
 		setDeplacement(new DeplacementSattelite());
 		setPosition(position);
 		BordDroit = GetPropertyValues.getValuePropertie("BordDroit");
+		largeurZone = GetPropertyValues.getValuePropertie("fenetreSynchronisation");
 	}
 
 	@Override
