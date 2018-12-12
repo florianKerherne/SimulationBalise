@@ -21,14 +21,14 @@ public class Example1 {
 		model.createBalise(50,0,new DeplacementHorizontal());
 		model.createBalise(00,0,new DeplacementParabol());
 		model.createSattelite(50,50);
-		model.createSattelite(200,50);
+		model.createSattelite(600,50);
 		lance(model);
 	}
 	
 	private static void lance(SystemSimulation model) {
 		World jc = new World("Simulateur de balise");
 		jc.setBackground(Color.WHITE);
-		jc.setPreferredSize(new Dimension(GetPropertyValues.getValuePropertie("BordDroit"), 600));
+		jc.setPreferredSize(new Dimension(GetPropertyValues.getValuePropertie("BordDroit"), 900));
 
 		jc.setModel(model);
 		jc.open();

@@ -40,7 +40,6 @@ public class VisiteurDraw extends Visiteur {
 	public void visit(Balise balise) {
 		Image image = Toolkit.getDefaultToolkit().getImage(PathImageBalise);
 		
-		Color c = graphique.getColor();
 		if(balise.getPosition().getY() <= 0) {
 			graphique.setColor(Color.BLUE);
 		}
@@ -51,7 +50,7 @@ public class VisiteurDraw extends Visiteur {
 			graphique.setColor(Color.GREEN);
 		}
 		
-		int positionY = Math.abs(balise.getPosition().getY() -100) ;
+		int positionY = Math.abs(balise.getPosition().getY() -300) ;
 		//graphique.fillOval(balise.getPosition().getX(),positionY,10,10);
 		graphique.drawImage(image, balise.getPosition().getX(),positionY,null);
 		graphique.drawRect(balise.getPosition().getX(), positionY, 128, 128);
@@ -61,7 +60,6 @@ public class VisiteurDraw extends Visiteur {
 	public void visit(Sattelite sattelite) {
 		Image image = Toolkit.getDefaultToolkit().getImage(PathImageSatellite);
 		
-		Color c = graphique.getColor();
 		graphique.setColor(Color.RED);
 		int positionY = Math.abs(sattelite.getPosition().getY() -100) ;
 		//graphique.fillOval(sattelite.getPosition().getX(),positionY,10,10);
@@ -69,7 +67,7 @@ public class VisiteurDraw extends Visiteur {
 	}
 	
 	public void drawDecors() {
-		graphique.fillRect(0, 100, 1000, 1);
+		graphique.fillRect(0, 300, 2000, 1);
 	}
 
 }
