@@ -19,8 +19,6 @@ public class Sattelite extends Entite {
 	@Override
 	public void updateSimulation() {
 		executeDeplacement();
-		//TODO Annoncer l evenement deplacer
-		//.announce(new MoveEvenement(this), this);
 	}
 	
 	public boolean dansZoneReception(Position pos) {

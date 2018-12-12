@@ -43,14 +43,8 @@ public class Annonceur {
 		List<ObserverSimulation> listObserver = subscriptions.get(e.getClass());
 		
 		if(listObserver == null) return;
-		//Iterator<ObserverSimulation> ite = listObserver.iterator();
-		/*while(ite.hasNext()) {
-			ite.next().receive(e);
-		}*/
 		for(ObserverSimulation obs:listObserver) {
-			//System.out.println(obs);
 			e.sendTo(obs);
-			//obs.receive(e);
 		}
 	}
 

@@ -24,17 +24,6 @@ public class Balise extends Entite implements ObserverSimulation {
 		return MessageTransmis;
 	}
 
-	/*@Override
-	public void update(Observable arg0, Object arg1) {
-		if(getPosition().getY()>=0 && MessageTransmis==false) {
-			Sattelite sattelite = (Sattelite)arg0;
-			if(sattelite.dansZoneReception(getPosition())) {
-				sattelite.transmitionMessage("coucou");
-				MessageTransmis=true;
-			}
-		}
-	}*/
-
 	//a chaque frame
 	@Override
 	public void updateSimulation() {
@@ -50,14 +39,11 @@ public class Balise extends Entite implements ObserverSimulation {
 				executeDeplacement();
 				MessageTransmis=false;				
 			}
-			
 		}
 	}
 
 	@Override
 	public void receive(MoveEvenement e) {
-		//System.out.println("receive");
-		//si e est un signal du satelitte
 		if(getPosition().getY()>=0 && MessageTransmis==false) {
 			Sattelite sattelite = (Sattelite)e.getSource();
 			if(sattelite.dansZoneReception(getPosition())) {
@@ -72,7 +58,6 @@ public class Balise extends Entite implements ObserverSimulation {
 			if(entite instanceof Sattelite) {
 				Sattelite satellite = (Sattelite)entite;
 				satellite.getAnnonceur().subscribes(MoveEvenement.class, this);
-				//System.out.println("inscription");
 			}
 		}
 	}
