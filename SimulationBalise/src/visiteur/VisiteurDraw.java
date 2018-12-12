@@ -8,16 +8,20 @@ import java.awt.Toolkit;
 import model.Balise;
 import model.Entite;
 import model.SystemSimulation;
+import ressources.GetPropertyValues;
 import model.Sattelite;
 
 public class VisiteurDraw extends Visiteur {
 
 	Graphics graphique;
-	String PathImageSatellite = "ressources\\satellite.jpg";
-	String PathImageBalise = "ressources\\balise.png";;
+	String PathImageSatellite;
+	String PathImageBalise;
+	int niveauMer = GetPropertyValues.getValuePropertie("niveauMer");
 	
 	public VisiteurDraw(Graphics graphique) {
 		this.graphique	= graphique;
+		this.PathImageSatellite = GetPropertyValues.getValuePropertieString("PathImageSatellite");
+		this.PathImageBalise = GetPropertyValues.getValuePropertieString("PathImageBalise");
 		drawDecors();
 	}
 	
@@ -40,10 +44,10 @@ public class VisiteurDraw extends Visiteur {
 	public void visit(Balise balise) {
 		Image image = Toolkit.getDefaultToolkit().getImage(PathImageBalise);
 		
-		if(balise.getPosition().getY() <= 0) {
+		if(balise.getPosition().getY() <= niveauMer) {
 			graphique.setColor(Color.BLUE);
 		}
-		if(balise.getPosition().getY() >= 0) {
+		if(balise.getPosition().getY() >= niveauMer) {
 			graphique.setColor(Color.ORANGE);
 		}
 		if(balise.getMessageTransmis()) {
@@ -67,7 +71,7 @@ public class VisiteurDraw extends Visiteur {
 	}
 	
 	public void drawDecors() {
-		graphique.fillRect(0, 300, 2000, 1);
+		graphique.fillRect(0, niveauMer+300, 2000, 1);
 	}
 
 }

@@ -16,12 +16,13 @@ import vue.World;
 public class Example1 {
 
 	public static void main(String[] args) {
+		int hauteur = GetPropertyValues.getValuePropertie("hauteurSatellite");
 		SystemSimulation model = new SystemSimulation();
 		model.createBalise(150,0,new DeplacementVertical());
 		model.createBalise(50,0,new DeplacementHorizontal());
 		model.createBalise(00,0,new DeplacementParabol());
-		model.createSattelite(50,50);
-		model.createSattelite(600,50);
+		model.createSattelite(50,hauteur);
+		model.createSattelite(600,hauteur);
 		lance(model);
 	}
 	
@@ -36,7 +37,7 @@ public class Example1 {
 			//------- action
 			model.updateSimulation();
 			try {
-				Thread.sleep(50);
+				Thread.sleep(GetPropertyValues.getValuePropertie("vitesseSimulation"));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
