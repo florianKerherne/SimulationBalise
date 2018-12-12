@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.deplacement.Deplacement;
+import model.deplacement.DeplacementVertical;
 import visiteur.Visitable;
 import visiteur.Visiteur;
 
@@ -23,10 +24,18 @@ public class SystemSimulation implements Visitable {
 		listEntites.add(entite);
 	}
 	
+	public Entite createSattelite() {
+		return createSattelite(0,100);
+	}
+	
 	public Entite createSattelite(int x,int y) {
 		Sattelite satelite = new Sattelite(this,new Position(x,y));
 		listEntites.add(satelite);
 		return satelite;
+	}
+	
+	public Entite createBalise() {
+		return createBalise(0,0,new DeplacementVertical());
 	}
 	
 	public Entite createBalise(int x,int y,Deplacement dep) {
