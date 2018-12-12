@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.deplacement.Deplacement;
 import model.deplacement.DeplacementVertical;
+import ressources.GetPropertyValues;
 import visiteur.Visitable;
 import visiteur.Visiteur;
 
@@ -25,7 +26,7 @@ public class SystemSimulation implements Visitable {
 	}
 	
 	public Entite createSattelite() {
-		return createSattelite(0,100);
+		return createSattelite(0,GetPropertyValues.getValuePropertie("hauteurSatellite"));
 	}
 	
 	public Entite createSattelite(int x,int y) {

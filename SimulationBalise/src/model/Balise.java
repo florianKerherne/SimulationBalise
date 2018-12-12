@@ -4,12 +4,15 @@ import gestionEvenement.ObserverSimulation;
 import gestionEvenement.evenement.MoveEvenement;
 import gestionEvenement.evenement.SyncEvenement;
 import model.deplacement.Deplacement;
+import ressources.GetPropertyValues;
 import visiteur.Visiteur;
 
 public class Balise extends Entite implements ObserverSimulation {
 
 	boolean etatTransmission=false;
 	int DonneeMessage = 0;
+	int niveauMer = GetPropertyValues.getValuePropertie("niveauMer");
+	
 	public Balise(SystemSimulation model,Deplacement deplacement,Position position) {
 		super(model);
 		setDeplacement(deplacement);
@@ -29,17 +32,16 @@ public class Balise extends Entite implements ObserverSimulation {
 	@Override
 	public void updateSimulation() {
 		//si immerge
-		if(getPosition().getY()<0) {
+		if(getPosition().getY() < niveauMer) {
 			executeDeplacement();
 			DonneeMessage++;
-			if(getPosition().getY()>=0) subscribes();
+			if(getPosition().getY()>= niveauMer) subscribes();
 		} else {	//si a la surface
 			//si j ai transmis mon message au satellite
 			if(DonneeMessage <=0) {
 				//plonger
 				unsubscribes();
 				executeDeplacement();
-				//MessageTransmis=false;				
 			}
 		}
 		etatTransmission=false;
@@ -47,11 +49,12 @@ public class Balise extends Entite implements ObserverSimulation {
 
 	@Override
 	public void receive(MoveEvenement e) {
-		if(getPosition().getY()>=0 && DonneeMessage>0) {
+		int quantiteDonnees = GetPropertyValues.getValuePropertie("quantiteDonnees");
+		if(getPosition().getY()>=niveauMer && DonneeMessage>0) {
 			Sattelite sattelite = (Sattelite)e.getSource();
 			if(sattelite.dansZoneReception(getPosition())) {
 				sattelite.transmitionMessage("donnee "+DonneeMessage);
-				DonneeMessage-=10;
+				DonneeMessage -= quantiteDonnees;
 				etatTransmission=true;
 			}
 		}
