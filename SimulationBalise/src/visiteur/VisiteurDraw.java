@@ -57,7 +57,7 @@ public class VisiteurDraw extends Visiteur {
 		int positionY = Math.abs(balise.getPosition().getY() -300) ;
 		//graphique.fillOval(balise.getPosition().getX(),positionY,10,10);
 		graphique.drawImage(image, balise.getPosition().getX(),positionY,null);
-		graphique.drawRect(balise.getPosition().getX(), positionY, 128, 128);
+		graphique.drawRect(balise.getPosition().getX(), positionY, image.getWidth(null), image.getHeight(null));
 	}
 
 	@Override
