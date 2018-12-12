@@ -2,6 +2,7 @@ package model;
 
 import model.deplacement.DeplacementSattelite;
 import ressources.GetPropertyValues;
+import visiteur.Visiteur;
 
 public class Sattelite extends Entite {
 
@@ -33,6 +34,11 @@ public class Sattelite extends Entite {
 	
 	public void transmitionMessage(String message) {
 		System.out.println(message);
+	}
+
+	@Override
+	public void accept(Visiteur v) {
+		v.visit(this);
 	}
 
 }

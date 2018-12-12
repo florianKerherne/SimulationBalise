@@ -4,6 +4,7 @@ import gestionEvenement.ObserverSimulation;
 import gestionEvenement.evenement.MoveEvenement;
 import gestionEvenement.evenement.SyncEvenement;
 import model.deplacement.Deplacement;
+import visiteur.Visiteur;
 
 public class Balise extends Entite implements ObserverSimulation {
 
@@ -88,6 +89,11 @@ public class Balise extends Entite implements ObserverSimulation {
 	@Override
 	public void receive(SyncEvenement syncEvenement) {
 		
+	}
+
+	@Override
+	public void accept(Visiteur v) {
+		v.visit(this);
 	}
 
 }

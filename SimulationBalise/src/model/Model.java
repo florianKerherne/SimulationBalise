@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.deplacement.Deplacement;
+import visiteur.Visitable;
+import visiteur.Visiteur;
 
-public class Model {
+public class Model implements Visitable {
 
 	private List<Entite> listEntites;
 	
@@ -37,6 +39,11 @@ public class Model {
 		for(Entite entite:listEntites) {
 			entite.updateSimulation();
 		}
+	}
+
+	@Override
+	public void accept(Visiteur v) {
+		v.visit(this);
 	}
 	
 	

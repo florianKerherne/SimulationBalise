@@ -3,8 +3,9 @@ package model;
 import gestionEvenement.Annonceur;
 import gestionEvenement.evenement.MoveEvenement;
 import model.deplacement.Deplacement;
+import visiteur.Visitable;
 
-public abstract class Entite{
+public abstract class Entite implements Visitable{
 	
 	private Annonceur annonceur;
 	protected Model model;
