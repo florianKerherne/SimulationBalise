@@ -65,7 +65,7 @@ public class World extends JPanel implements KeyListener,ObserverSimulation {
 	    
 	    Saisie = new JTextArea("Txt");
 	    Saisie.setPreferredSize(new Dimension((int)this.getPreferredSize().getWidth(),(int) Saisie.getPreferredSize().getHeight()));
-	    
+	    Interpreteur inter = new Interpreteur(model,this); 
 	    Fsaisie.add(new JScrollPane(Saisie));
 		frame.pack();
 		frame.setVisible(true);

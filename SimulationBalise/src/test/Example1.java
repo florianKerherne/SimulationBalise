@@ -10,16 +10,14 @@ import model.deplacement.DeplacementHorizontal;
 import model.deplacement.DeplacementParabol;
 import model.deplacement.DeplacementVertical;
 import ressources.GetPropertyValues;
-import vue.Interpreteur;
 import vue.World;
 
 
 public class Example1 {
 
-	public static SystemSimulation model;
 	public static void main(String[] args) {
 		int hauteur = GetPropertyValues.getValuePropertie("hauteurSatellite");
-		model = new SystemSimulation();
+		SystemSimulation model = new SystemSimulation();
 		model.createBalise(150,0,new DeplacementVertical());
 		model.createBalise(50,0,new DeplacementHorizontal());
 		model.createBalise(00,0,new DeplacementParabol());
@@ -35,7 +33,6 @@ public class Example1 {
 
 		jc.setModel(model);
 		jc.open();
-		Interpreteur inter = new Interpreteur(model,jc); 
 		while (true) {
 			//------- action
 			model.updateSimulation();
