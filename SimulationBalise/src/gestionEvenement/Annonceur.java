@@ -28,6 +28,7 @@ public class Annonceur {
 	public void unsubscribes(Class<?extends Evenement> eventKind, ObserverSimulation o) {
 		
 		List<ObserverSimulation> listObserver = subscriptions.get(eventKind);
+		if(listObserver==null)return;
 		Iterator<ObserverSimulation> itor =  listObserver.iterator();
 		while (itor.hasNext()) {
 			ObserverSimulation current = itor.next();

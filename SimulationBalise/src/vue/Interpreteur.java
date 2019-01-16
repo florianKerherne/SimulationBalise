@@ -3,6 +3,7 @@ package vue;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import gestionEvenement.evenement.MoveEvenement;
@@ -16,6 +17,7 @@ public class Interpreteur implements KeyListener{
 	Map<String,Entite> tabVariable;
 	
 	public Interpreteur(SystemSimulation model,World jc){
+		tabVariable = new HashMap<String, Entite>();
 		this.model	= model;
 		this.jc	= jc;
 		jc.getSaisie().addKeyListener(this);
@@ -25,7 +27,7 @@ public class Interpreteur implements KeyListener{
 		String[] tabCommand = command.split(" ");
 		if(tabCommand.length<1)return false;
 		try {
-		switch (tabCommand[1]) {
+		switch (tabCommand[0]) {
 		case "new":
 			commandNew(tabCommand);
 			break;
@@ -48,7 +50,7 @@ public class Interpreteur implements KeyListener{
 			commandHelp(tabCommand);
 			break;
 		default:
-			throw new  IOException("");
+			throw new  IOException("Command invalide");
 		}
 		} catch (IOException e) {
 			log(e.getMessage());
@@ -61,19 +63,20 @@ public class Interpreteur implements KeyListener{
 			throw new  IOException("");
 		}
 		Entite entite;
-		switch (command[2]) {
+		switch (command[1]) {
 		case "balise":
 			entite	= model.createBalise();
+			log("Balise cree");
 			break;
 		case "satellite":
 			entite	= model.createSattelite();
-			
+			log("Satelitte cree");
 			break;
 		default:
-			throw new  IOException("");
+			throw new  IOException("Commande new error");
 		}
 		//garder en memoire la variable
-		tabVariable.put(command[3], entite);
+		tabVariable.put(command[2], entite);
 		//la vue ecoute l'entite
 		entite.getAnnonceur().subscribes(MoveEvenement.class, jc);
 	}
@@ -116,12 +119,16 @@ public class Interpreteur implements KeyListener{
 
 
 	private void log(String error) {
-		
+		jc.getLog().setText(jc.getLog().getText()+"\n"+error);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		jc.getLog().setText(jc.getSaisie().getText());
+		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			interpret(jc.getSaisie().getText());
+			jc.getSaisie().setText("");
+		}
+		
 	}
 
 	@Override
