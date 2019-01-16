@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.text.DefaultCaret;
 
 import gestionEvenement.ObserverSimulation;
 import gestionEvenement.evenement.MoveEvenement;
@@ -24,7 +25,7 @@ public class World extends JPanel implements KeyListener,ObserverSimulation {
 	
 	SystemSimulation model;
 	private KeyListener keyListener;
-
+	Interpreteur interpreteur;
 	JTextArea Saisie;
 	JTextArea log;
 	String name = "";
@@ -50,24 +51,28 @@ public class World extends JPanel implements KeyListener,ObserverSimulation {
 		JPanel Fsimulation = new JPanel();
 	    JPanel Flog = new JPanel();
 	    JPanel Fsaisie = new JPanel();
-	    frame.getContentPane().add(Fsimulation, "North");
-	    frame.getContentPane().add(Flog, "Center");
-	    frame.getContentPane().add(Fsaisie, "South");
+	    
 	    
 	    Fsimulation.add(this);
 		
-	    log = new JTextArea("HW");
-	    log.setLineWrap(true);
+	    log = new JTextArea();
+	    DefaultCaret caret = (DefaultCaret)log.getCaret();
+	    caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 	    log.setEditable(false);
-	    log.setPreferredSize(new Dimension((int)this.getPreferredSize().getWidth(),(int) log.getPreferredSize().getHeight()*3));
-	    Flog.add(new JScrollPane(log));
+
+	    JScrollPane scrollpane = new JScrollPane(log, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	    scrollpane.setPreferredSize(new Dimension((int)this.getPreferredSize().getWidth(),(int) log.getPreferredSize().getHeight()*3));
+	    Flog.add(scrollpane);
 	    
-	    
-	    Saisie = new JTextArea("Txt");
+	    Saisie = new JTextArea();
 	    Saisie.setPreferredSize(new Dimension((int)this.getPreferredSize().getWidth(),(int) Saisie.getPreferredSize().getHeight()));
-	    new Interpreteur(model,this); 
+	    interpreteur = new Interpreteur(model,this); 
 	    Fsaisie.add(new JScrollPane(Saisie));
+	    frame.getContentPane().add(Fsimulation, "North");
+	    frame.getContentPane().add(Flog, "Center");
+	    frame.getContentPane().add(Fsaisie, "South");
 		frame.pack();
+		
 		frame.setVisible(true);
 		
 		requestFocus();
@@ -133,5 +138,11 @@ public class World extends JPanel implements KeyListener,ObserverSimulation {
 		return log;
 	}
 
+	public void startSimulation() {
+		interpreteur.start();
+	}
+	public void interpret(String command) {
+		interpreteur.MultiInterpret(command);
+	}
 	
 }

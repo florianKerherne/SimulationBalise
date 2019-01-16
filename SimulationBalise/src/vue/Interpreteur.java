@@ -9,12 +9,18 @@ import java.util.Map;
 import gestionEvenement.evenement.MoveEvenement;
 import model.Entite;
 import model.SystemSimulation;
+import model.deplacement.DeplacementHorizontal;
+import model.deplacement.DeplacementParabol;
+import model.deplacement.DeplacementVertical;
+import ressources.GetPropertyValues;
 
 public class Interpreteur implements KeyListener{
 
 	SystemSimulation model;
 	World jc;
 	Map<String,Entite> tabVariable;
+	String command = "";
+	boolean pause = false;
 	
 	public Interpreteur(SystemSimulation model,World jc){
 		tabVariable = new HashMap<String, Entite>();
@@ -23,7 +29,45 @@ public class Interpreteur implements KeyListener{
 		jc.getSaisie().addKeyListener(this);
 	}
 	
+	public void start() {
+		while (true) {
+			//------- command
+			interpret();
+			//------- action
+			if(!pause) {
+				model.updateSimulation();
+			}
+			
+			try {
+				Thread.sleep(GetPropertyValues.getValuePropertie("vitesseSimulation"));
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public boolean interpret() {
+		if(!command.isEmpty()) {
+			boolean result = interpret(command);
+			command="";
+			return result;
+		}
+		return false;
+	}
+	
+	public boolean MultiInterpret(String multiCommand) {
+		multiCommand = multiCommand.replace("\n","");
+		String[] tabCommand = multiCommand.split(";");
+		for(String command : tabCommand) {
+			if(!interpret(command)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public boolean interpret(String command) {
+		command = command.replace("\n","");
 		String[] tabCommand = command.split(" ");
 		if(tabCommand.length<1)return false;
 		try {
@@ -49,8 +93,17 @@ public class Interpreteur implements KeyListener{
 		case "help":
 			commandHelp(tabCommand);
 			break;
+		case "start":
+			commandStart(tabCommand);
+			break;
+		case "stop":
+			commandStop(tabCommand);
+			break;
+		case "init":
+			commandInit(tabCommand);
+			break;
 		default:
-			throw new  IOException("Command invalide");
+			throw new  IOException("Command "+tabCommand[0]+"invalide");
 		}
 		} catch (IOException e) {
 			log(e.getMessage());
@@ -60,20 +113,33 @@ public class Interpreteur implements KeyListener{
 	
 	private void commandNew(String[] command) throws IOException {
 		if(command.length!=3) {
-			throw new  IOException("");
+			throw new  IOException("ERROR : arguments invalides : new [balise|baliseHorizontale|baliseVerticale|baliseParabole|satellite] {nom}");
 		}
 		Entite entite;
 		switch (command[1]) {
 		case "balise":
 			entite	= model.createBalise();
-			log("Balise cree");
+			log("Balise "+command[2]+" créée");
+			break;
+		case "baliseHorizontale":
+			entite	= model.createBalise(new DeplacementHorizontal());
+			log("Balise Horizontale "+command[2]+" créée");
+			break;
+		case "baliseVerticale":
+			entite	= model.createBalise(new DeplacementVertical());
+			log("Balise Verticale "+command[2]+" créée");
+			break;
+		case "baliseParabole":
+			entite	= model.createBalise(new DeplacementParabol());
+			log("Balise Parabole "+command[2]+" créée");
 			break;
 		case "satellite":
-			entite	= model.createSattelite();
-			log("Satelitte cree");
+			int hauteur = GetPropertyValues.getValuePropertie("hauteurSatellite");
+			entite	= model.createSattelite(50,hauteur);
+			log("Satelitte "+command[2]+" cree");
 			break;
 		default:
-			throw new  IOException("Commande new error");
+			throw new  IOException("ERROR : type inconnu");
 		}
 		//garder en memoire la variable
 		tabVariable.put(command[2], entite);
@@ -82,39 +148,71 @@ public class Interpreteur implements KeyListener{
 	}
 	
 	private void commandDelete(String[] command) throws IOException {
-		if(command.length!=3) {
-			throw new  IOException("");
+		if(command.length!=2) {
+			throw new  IOException("ERROR : arguments invalides : delete {nom}");
 		}
+		Entite entite = tabVariable.get(command[1]);
+		if(entite == null) {
+			throw new  IOException("ERROR : Nom de l'entité inconnu");
+		}
+		model.getListEntites().remove(entite);
+		//TODO supprimer les balise des gestionnaire d'evenement des satellite pour evité les fuite memoire
+		tabVariable.remove(command[1]);
 	}
 	
 	private void commandMove(String[] command) throws IOException {
 		if(command.length!=3) {
-			throw new  IOException("");
+			throw new  IOException("ERROR :");
 		}
 	}
 	
 	private void commandColor(String[] command) throws IOException {
 		if(command.length!=3) {
-			throw new  IOException("");
+			throw new  IOException("ERROR :");
 		}
 	}
 	
 	private void commandSpeed(String[] command) throws IOException {
 		if(command.length!=3) {
-			throw new  IOException("");
+			throw new  IOException("ERROR :");
 		}
 	}
 	
 	private void commandImage(String[] command) throws IOException {
 		if(command.length!=3) {
-			throw new  IOException("");
+			throw new  IOException("ERROR :");
 		}
 	}
 	
-	private void commandHelp(String[] command) throws IOException {
-		if(command.length!=3) {
-			throw new  IOException("");
+	private void commandStart(String[] command) throws IOException {
+		if(command.length!=1) {
+			throw new  IOException("ERROR : start");
 		}
+		pause = false;
+		log("Simulation démarré");
+	}
+	
+	private void commandStop(String[] command) throws IOException {
+		if(command.length!=1) {
+			throw new  IOException("ERROR : stop");
+		}
+		pause = true;
+		log("Simulation arreté");
+	}
+	
+	private void commandInit(String[] command) throws IOException {
+		if(command.length!=1) {
+			throw new  IOException("ERROR : init");
+		}
+		model.getListEntites().clear();
+		log("Simulation réinitialisé");
+	}
+	
+	private void commandHelp(String[] command) throws IOException {
+		if(command.length!=1) {
+			throw new  IOException("ERROR : help");
+		}
+		log("command : [new|delete|start|stop|init]");
 	}
 
 
@@ -125,7 +223,8 @@ public class Interpreteur implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			interpret(jc.getSaisie().getText());
+			command = jc.getSaisie().getText();
+			//interpret(jc.getSaisie().getText());
 			jc.getSaisie().setText("");
 		}
 		

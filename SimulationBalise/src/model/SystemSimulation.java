@@ -39,6 +39,10 @@ public class SystemSimulation implements Visitable {
 		return createBalise(0,0,new DeplacementVertical());
 	}
 	
+	public Entite createBalise(Deplacement dep) {
+		return createBalise(0,0,dep);
+	}
+	
 	public Entite createBalise(int x,int y,Deplacement dep) {
 		Balise balise = new Balise(this,dep,new Position(x,y));
 		listEntites.add(balise);
