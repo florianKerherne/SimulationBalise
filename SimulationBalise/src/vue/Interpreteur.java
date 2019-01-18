@@ -108,7 +108,7 @@ public class Interpreteur implements KeyListener{
 			commandInit(tabCommand);
 			break;
 		default:
-			throw new  IOException("Command "+tabCommand[0]+"invalide");
+			throw new  IOException("Command "+tabCommand[0]+" invalide");
 		}
 		} catch (IOException e) {
 			log(e.getMessage());
