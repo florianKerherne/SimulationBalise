@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import gestionEvenement.evenement.MoveEvenement;
+import gestionEvenement.evenement.SyncEvenement;
 import model.Entite;
 import model.SystemSimulation;
 import model.deplacement.DeplacementHorizontal;
@@ -46,9 +47,13 @@ public class Interpreteur implements KeyListener{
 		}
 	}
 	
+	public void setCommand(String command) {
+		this.command = command;
+	}
+	
 	public boolean interpret() {
 		if(!command.isEmpty()) {
-			boolean result = interpret(command);
+			boolean result = MultiInterpret(command);
 			command="";
 			return result;
 		}
@@ -108,6 +113,7 @@ public class Interpreteur implements KeyListener{
 		} catch (IOException e) {
 			log(e.getMessage());
 		}
+		jc.repaint();
 		return true;
 	}
 	
@@ -115,22 +121,21 @@ public class Interpreteur implements KeyListener{
 		if(command.length!=3) {
 			throw new  IOException("ERROR : arguments invalides : new [balise|baliseHorizontale|baliseVerticale|baliseParabole|satellite] {nom}");
 		}
+		if(tabVariable.get(command[2])!=null) {
+			throw new  IOException("ERROR : argument nom invalide : Ce nom est déjà utilisé");
+		}
 		Entite entite;
 		switch (command[1]) {
-		case "balise":
-			entite	= model.createBalise();
-			log("Balise "+command[2]+" créée");
-			break;
 		case "baliseHorizontale":
-			entite	= model.createBalise(new DeplacementHorizontal());
+			entite	= model.createBalise(100, 0,new DeplacementHorizontal());
 			log("Balise Horizontale "+command[2]+" créée");
 			break;
-		case "baliseVerticale":
-			entite	= model.createBalise(new DeplacementVertical());
+		case "baliseVerticale": case "balise":
+			entite	= model.createBalise(100, 0,new DeplacementVertical());
 			log("Balise Verticale "+command[2]+" créée");
 			break;
 		case "baliseParabole":
-			entite	= model.createBalise(new DeplacementParabol());
+			entite	= model.createBalise(100, 0,new DeplacementParabol());
 			log("Balise Parabole "+command[2]+" créée");
 			break;
 		case "satellite":
@@ -145,6 +150,7 @@ public class Interpreteur implements KeyListener{
 		tabVariable.put(command[2], entite);
 		//la vue ecoute l'entite
 		entite.getAnnonceur().subscribes(MoveEvenement.class, jc);
+		entite.getAnnonceur().subscribes(SyncEvenement.class, jc);
 	}
 	
 	private void commandDelete(String[] command) throws IOException {

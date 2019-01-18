@@ -142,7 +142,7 @@ public class World extends JPanel implements KeyListener,ObserverSimulation {
 		interpreteur.start();
 	}
 	public void interpret(String command) {
-		interpreteur.MultiInterpret(command);
+		interpreteur.setCommand(command);
 	}
 	
 }

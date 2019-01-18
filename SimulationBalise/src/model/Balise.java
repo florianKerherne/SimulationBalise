@@ -9,7 +9,7 @@ import visiteur.Visiteur;
 
 public class Balise extends Entite implements ObserverSimulation {
 
-	boolean etatTransmission=false;
+	int etatTransmission=0;
 	int DonneeMessage = 0;
 	int niveauMer = GetPropertyValues.getValuePropertie("niveauMer");
 	
@@ -25,7 +25,7 @@ public class Balise extends Entite implements ObserverSimulation {
 	}
 	
 	public boolean getMessageTransmis() {
-		return etatTransmission;
+		return etatTransmission>0;
 	}
 
 	//a chaque frame
@@ -44,7 +44,10 @@ public class Balise extends Entite implements ObserverSimulation {
 				executeDeplacement();
 			}
 		}
-		etatTransmission=false;
+		if(etatTransmission>0) {
+			etatTransmission--;
+		}
+		
 	}
 
 	@Override
@@ -55,7 +58,8 @@ public class Balise extends Entite implements ObserverSimulation {
 			if(sattelite.dansZoneReception(getPosition())) {
 				sattelite.transmitionMessage("donnee "+DonneeMessage);
 				DonneeMessage -= quantiteDonnees;
-				etatTransmission=true;
+				etatTransmission=2;
+				getAnnonceur().announce(new SyncEvenement(this));
 			}
 		}
 	}

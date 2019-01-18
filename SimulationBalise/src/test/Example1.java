@@ -30,7 +30,7 @@ public class Example1 {
 	private static void lance(SystemSimulation model) {
 		World jc = new World("Simulateur de balise");
 		jc.setBackground(Color.WHITE);
-		jc.setPreferredSize(new Dimension(GetPropertyValues.getValuePropertie("BordDroit"), 900));
+		jc.setPreferredSize(new Dimension(GetPropertyValues.getValuePropertie("BordDroit"), 500));
 
 		jc.setModel(model);
 		jc.open();
@@ -45,6 +45,7 @@ public class Example1 {
 		command += "new satellite S1;";
 		command += "new baliseVerticale B1;";
 		command += "new baliseParabole B2;";
+		command += "new baliseHorizontale B3;";
 		command += "start;";
 		
 		jc.interpret(command);

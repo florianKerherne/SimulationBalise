@@ -15,7 +15,7 @@ public class DeplacementParabol implements Deplacement{
 	public DeplacementParabol() {
 		BordDroit = GetPropertyValues.getValuePropertie("BordDroit");
 		niveauMer = GetPropertyValues.getValuePropertie("niveauMer");
-		pas = GetPropertyValues.getValuePropertie("pasSimulation");
+		pas = GetPropertyValues.getValuePropertie("pasSimulation") /2;
 		descenteMax = GetPropertyValues.getValuePropertie("fondOcean")-50;
 	}
 	
