@@ -42,12 +42,7 @@ public class Example1 {
 	
 	private static void commandStart(World jc) {
 		String command = "";
-		command += "new satellite S1;";
-		command += "new baliseVerticale B1;";
-		command += "new baliseParabole B2;";
-		command += "new baliseHorizontale B3;";
-		command += "start;";
-		
+		command = GetPropertyValues.getValuePropertieString("commandesDemarrage");
 		jc.interpret(command);
 	}
 
